@@ -70,7 +70,7 @@
     <h1>Symptom List</h1>
     <form name="symptomMN" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
       <input type="hidden" name="hdnCmd" value="">
-      <table align="center" id="department-au-table" class="table table-bordered table-hover">
+      <table id="test" class="table table-bordered table-hover">
         <thead>
         <tr>
           <th > <div align="center">Symptom ID </div></th>
@@ -81,11 +81,12 @@
           <th > <div align="center">Delete </div></th>
         </tr>
         </thead>
+        <tbody>
     <?php
       while($objResult = mysql_fetch_array($objQuery))
       {
     ?>
-      <tbody>
+      
       <?php
       if(isset($_GET["SymID"]) and isset($_GET["Action"])){
       	if($objResult["symptomID"] == $_GET["SymID"] and $_GET["Action"] == "Edit")
@@ -127,6 +128,7 @@
       else// Don't have GET variable
       {
       ?>
+   
         <tr>
           <td><div align="center"><?php echo $objResult["symptomID"];?></div></td>
           <td><?php echo $objResult["name"];?></td>
@@ -135,6 +137,7 @@
           <td align="center"><a href="<?php echo $_SERVER["PHP_SELF"];?>?Action=Edit&SymID=<?php echo $objResult["symptomID"];?>">Edit</a></td>
       	  <td align="center"><a href="JavaScript:if(confirm('Confirm Delete?')==true){window.location='<?php echo $_SERVER["PHP_SELF"];?>?Action=Del&SymID=<?php echo $objResult["symptomID"];?>';}">Delete</a></td>
         </tr>
+      
       <?php
       	 }
       ?>
@@ -159,6 +162,7 @@
               <input name="btnAdd" type="button" id="btnAdd" value="Add" class="btn btn-success" OnClick="symptomMN.hdnCmd.value='Add';symptomMN.submit();">
             </div>
           </td>
+          <td style="display:none;"></td>
         </tr>
         </tbody>
       </table>
@@ -172,7 +176,7 @@
 
 <script>
 $(document).ready(function(){
-  // $('#department-au-table').dataTable();
+  $('#test').dataTable();
 
 });
 </script>
