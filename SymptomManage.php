@@ -109,6 +109,7 @@
             <input name="btnUpdate" type="button" id="btnUpdate" value="Update" OnClick="symptomMN.hdnCmd.value='Update';symptomMN.submit();">
             <input name="btnCancel" type="button" id="btnCancel" value="Cancel" OnClick="window.location='<?php echo $_SERVER["PHP_SELF"];?>';">
           </div></td>
+          <td style="displat:none;"></td>
       </tr> 
       <?php
       	}

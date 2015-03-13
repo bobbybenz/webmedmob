@@ -76,13 +76,16 @@
 	<h1>Disease List</h1>
 	<form name = "diseaseMN" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 		<input type="hidden" name="hdnCmd" value="">
-		<table class="table table-bordered table-hover">
+		<table id="test" class="table table-bordered table-hover">
+      <thead>
 			<tr>
 				<td>Disease ID</td>
 				<td>Name</td>
 				<td>Edit</td>
 				<td>Delete</td>
 			</tr>
+      </thead>
+      <tbody>
 	<?php
 		while ($objResult = mysql_fetch_array($objQuery)) {
 			
@@ -101,6 +104,7 @@
             		<input name="btnUpdate" type="button" id="btnUpdate" value="Update" OnClick="diseaseMN.hdnCmd.value='Update';diseaseMN.submit();">
            	 		<input name="btnCancel" type="button" id="btnCancel" value="Cancel" OnClick="window.location='<?php echo $_SERVER["PHP_SELF"];?>';">
           		</div></td>
+        <td style="display:none;"></td>
 			</tr>
 	<?php
       	}//Edit Mode
@@ -111,7 +115,7 @@
 			<td><a href = "TreatmentManage.php?diseaseID=<?php echo $objResult['diseaseID'];?>&diseaseName=<?php echo $objResult['name'];?>" > <?php echo $objResult['name'];?></a></td>
 			<td><a href = "<?php echo $_SERVER["PHP_SELF"];?>?Action=Edit&DisID=<?php echo $objResult["diseaseID"];?>">Edit</a></td>
 			<td><a href="JavaScript:if(confirm('Confirm Delete?')==true){window.location='<?php echo $_SERVER["PHP_SELF"];?>?Action=Del&DisID=<?php echo $objResult["diseaseID"];?>';}">Delete</a></td>
-
+      
 		</tr>
 	<?php
         }// Else of have GET variable
@@ -141,7 +145,9 @@
               <input name="btnAdd" type="button" class="btn btn-success" id="btnAdd" value="Add" OnClick="diseaseMN.hdnCmd.value='Add';diseaseMN.submit();">
             </div>
           </td>
+          <td style="display:none;"></td>
         </tr>
+      </tbody>
       </table>
 	</form>
 	</div><!-- container -->
@@ -150,7 +156,12 @@
   }//Session
 	?>
 
+<script>
+$(document).ready(function(){
+  $('#test').dataTable();
 
+});
+</script>
 	<!-- 	<textarea style = "resize:none;"></textarea> -->
 	<!-- 	<input type = "button" value = "Add" onClick="parent.location='SymptomManage.php'"> -->
 <?php include('footer.php');?>
