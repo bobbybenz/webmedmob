@@ -4,15 +4,6 @@
 ?>
 <?php if(isset($_SESSION['userID'])) { ?>
 <?php
-    // $DB_HOST = "localhost";
-    // $DB_USER = "root";
-    // $DB_PASS = "";
-    // $DB_NAME = "medmobdb";
-
-    // $objConnect = mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
-    // $objDB = mysql_select_db($DB_NAME) or die("Couldn't select database");
-    // //$objDB = mysql_select_db("thaicreatedb");
-    // mysql_query("SET NAMES UTF8");
     include('connectAzure.php');
     
 ?>
@@ -23,12 +14,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-            <form method="POST" action="#">
-                <select name="symptomOption">
+            <form id="symptom-update" method="POST">
+                <h4>เลือกอาการ</h4>
+                <select id="symptom-list" name="symptomOption">
                       <option value="">       </option>
                 <?php while($objResultSymptom= mysql_fetch_array($objQuerysymptom)){?>
                       <option value="<?php echo $objResultSymptom['symptomID'];?>" 
-                        <?php //กรณีกดหาอาการ
+                        <?php //keep the recent selector
                         if(isset($_POST['symptomOption'])||$_GET['symptomID']){
                             if($_POST['symptomOption']== $objResultSymptom['symptomID'] ||$_GET['symptomID']==$objResultSymptom['symptomID']) {
                             echo "selected";
@@ -53,7 +45,7 @@
     //echo "Test :".$symptomID."<br>";
     while($objResult= mysql_fetch_array($objQuery)){
         $existData = 1;
-        echo "ID = ".$objResult['symptomNodeID']."---";
+        echo "ID = ".$objResult['symptomNodeID']."--";
         echo $objResult['symptomID'];
         echo $objResult['isRoot'];
         echo $objResult['isYesNode'];
@@ -224,6 +216,16 @@ else{//Donothing
    			//alert("typeNode:"+typeNode+"symptomNodeID:"+symptomNodeID);
    			window.location="SymptomNodeAdd.php?typeNode="+typeNode+"&symptomNodeID="+symptomNodeID;
    		}
+
+        //Query data when selector was changed 
+        $(document).ready(function(){
+            $('#symptom-list').change(function(){
+                $('#symptom-update').submit();
+                //alert("test");
+
+            });
+
+        });
     </script>
 
 <?php include('footer.php');?>
