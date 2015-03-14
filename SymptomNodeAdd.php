@@ -183,6 +183,7 @@
 				$('#question-value').val(disease);
 				$('#list-of-symptomNode-modal').modal('hide');
 			});
+			$('#modal-table').dataTable();
 
 
     	});//(document).ready
