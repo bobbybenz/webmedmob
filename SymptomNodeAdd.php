@@ -75,8 +75,9 @@
 		<input class="check-node-data have-node-data" type="radio" name="chkAddNewType" value="haveNodeData"> Have Data Node
 		<div id="have-node-data-panel">
 			<!-- Value from list of value -->
-			Question: <input type = "text" readonly id="question-value"><input type="button" value="...">
-			<input type = "hidden" name ="txtAddQuestion2" value="..." data-toggle="modal" data-target="#list-of-symptomNode-modal">
+			Question: <input type = "text" readonly id="question-value">
+			<input type="button" value="..." data-toggle="modal" data-target="#list-of-symptomNode-modal">
+			<input type = "hidden" name ="txtAddQuestion2" value="...">
 		</div>
 		<br>
 		<input class="btn btn-success" type="submit" name="btnAddSymptomNode" value="Add Node">
@@ -105,6 +106,7 @@
 	        	</thead>
 	        	<tbody>
 	        <?php
+
 	        	$strSQLSymptomNode="SELECT * FROM symptomnode";
 	        	$objQuerySymptomNode=mysql_query($strSQLSymptomNode) or die ("Error Query [".$strSQLSymptomNode."]");
 	        	//$objQuery = mysql_query($strSQLDisease) or die ("Error Query [".$strSQLDisease."]");
