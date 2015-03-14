@@ -95,8 +95,8 @@
       <tr>
           <td><div align="center">
       		<input type="hidden" name="txtEditsymptomID" size="5" value="<?php echo $objResult["symptomID"];?>"><?php echo $objResult["symptomID"];?></td>
-          <td><input type="text" name="txtEditName" size="20" value="<?php echo $objResult["name"];?>"></td>
-          <td><input type="text" name="txtEditFlowNumber" size="20" value="<?php echo $objResult["flowNumber"];?>"></td>
+          <td><input type="text" name="txtEditName" class="form-control" autofocus value="<?php echo $objResult["name"];?>"></td>
+          <td><input type="text" name="txtEditFlowNumber" class="form-control" value="<?php echo $objResult["flowNumber"];?>"></td>
           <td>   
             <select name = "txtEditPartOfBody">
               <option value = "head" <?php if($objResult["partOfBody"]=="head") echo "selected";?> >Head</option>
@@ -109,7 +109,7 @@
             <input name="btnUpdate" class="btn btn-info" type="button" id="btnUpdate" value="Update" OnClick="symptomMN.hdnCmd.value='Update';symptomMN.submit();">
             <input name="btnCancel" class="btn btn-default" type="button" id="btnCancel" value="Cancel" OnClick="window.location='<?php echo $_SERVER["PHP_SELF"];?>';">
           </div></td>
-          <td style="displat:none;"></td>
+          <td style="display:none;"></td>
       </tr> 
       <?php
       	}
@@ -148,10 +148,10 @@
     ?>
         <tr>
           <td><div align="center"><input type= "hidden" name="txtAddsymptomID" size="5"></div></td>
-          <td><input type="text" name="txtAddName" size="20"></td>
-          <td><input type="text" name="txtAddFlowNumber" size="20"></td>
+          <td><input type="text" name="txtAddName" class="form-control"></td>
+          <td><input type="text" name="txtAddFlowNumber" class="form-control"></td>
           <td>
-            <select name = "txtAddPartOfBody" class="selectpicker">
+            <select name = "txtAddPartOfBody">
               <option value = "head">Head</option>
               <option value = "body">Body</option>
               <option value = "arm_leg">Arm / Leg</option>

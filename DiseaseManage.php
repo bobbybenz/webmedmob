@@ -79,10 +79,10 @@
 		<table id="test" class="table table-bordered table-hover">
       <thead>
 			<tr>
-				<td>Disease ID</td>
+				<td style="width: 10%;">Disease ID</td>
 				<td>Name</td>
-				<td>Edit</td>
-				<td>Delete</td>
+				<td style="width: 10%;">Edit</td>
+				<td style="width: 10%;">Delete</td>
 			</tr>
       </thead>
       <tbody>
@@ -99,7 +99,7 @@
 			<tr>
 				
 				<td><input name = "txtEditdiseaseID" type = "hidden" value = "<?php echo $objResult['diseaseID'];?>"><?php echo $objResult['diseaseID'];?></td>
-				<td><input name = "txtEditName" type = "text" value ="<?php echo $objResult['name'];?>"></td>
+				<td><input name = "txtEditName" type = "text" class="form-control" value ="<?php echo $objResult['name'];?>"></td>
 				<td colspan="2" align="right"><div align="center">
             <input name="btnUpdate" class="btn btn-info" type="button" id="btnUpdate" value="Update" OnClick="diseaseMN.hdnCmd.value='Update';diseaseMN.submit();">
            	<input name="btnCancel" class="btn btn-default" type="button" id="btnCancel" value="Cancel" OnClick="window.location='<?php echo $_SERVER["PHP_SELF"];?>';">
@@ -139,7 +139,7 @@
     ?>
         <tr>
           <td><input type= "hidden" name="txtAddDiseaseID" ></td>
-          <td><input type="text" name="txtAddName"></td>
+          <td><input type="text" class="form-control" name="txtAddName"></td>
           <td colspan="2" align="right">
             <div align="center">
               <input name="btnAdd" type="button" class="btn btn-success" id="btnAdd" value="Add" OnClick="diseaseMN.hdnCmd.value='Add';diseaseMN.submit();">
