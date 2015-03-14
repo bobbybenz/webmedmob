@@ -65,7 +65,8 @@
 				<select name="slcTypeAdditionData">
 					<option>อุณหภูมิ</option>
 					<option>ความดัน</option>
-					<option>ผลตรวจเลือด</option>
+					<option>เพศชาย</option>
+					<option>เพศหญิง</option>
 				</select>
 			</div>
 		</div>
@@ -74,8 +75,8 @@
 		<input class="check-node-data have-node-data" type="radio" name="chkAddNewType" value="haveNodeData"> Have Data Node
 		<div id="have-node-data-panel">
 			<!-- Value from list of value -->
-			Question: <input type = "text" disabled><input type="button" value="...">
-			<input type = "hidden" name ="txtAddQuestion2" value="...">
+			Question: <input type = "text" readonly id="question-value"><input type="button" value="...">
+			<input type = "hidden" name ="txtAddQuestion2" value="..." data-toggle="modal" data-target="#list-of-symptomNode-modal">
 		</div>
 		<br>
 		<input class="btn btn-success" type="submit" name="btnAddSymptomNode" value="Add Node">
@@ -92,23 +93,22 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Diseases List</h4>
+	        <h4 class="modal-title" id="myModalLabel">Symptom Node List</h4>
 	      </div>  <!-- modal-header -->
 	      <div class="modal-body">
-	        <table class="table table-bordered table-hover">
+	        <table id="modal-table" class="table table-bordered table-hover">
 	        	<thead>
 	        		<tr>
 	        			<th style="text-align: center;">ID</th>
-	        			<th style="text-align: center;">Disease Name</th>
-	        			<!-- <th>Remarks</th> -->
+	        			<th style="text-align: center;">Question</th>
 	        		</tr>
 	        	</thead>
 	        	<tbody>
 	        <?php
-	        	$strSQLDisease="SELECT * FROM disease";
-	        	$objQueryDisease=mysql_query($strSQLDisease) or die ("Error Query [".$strSQLDisease."]");
+	        	$strSQLSymptomNode="SELECT * FROM symptomnode";
+	        	$objQuerySymptomNode=mysql_query($strSQLSymptomNode) or die ("Error Query [".$strSQLSymptomNode."]");
 	        	//$objQuery = mysql_query($strSQLDisease) or die ("Error Query [".$strSQLDisease."]");
-	        	while ($objResultDisease=mysql_fetch_array($objQueryDisease)) {
+	        	while ($objResultSymptomNode=mysql_fetch_array($objQuerySymptomNode)) {
 
 	        		# code...
 	        	
@@ -116,19 +116,12 @@
 	        		<tr>
 	        			<td style="text-align: center;">
 	        				<a href="javascript:void(0);" class="choose-button"><?php echo 
-	        				$objResultDisease['diseaseID']; ?></a>
+	        				$objResultSymptomNode['symptomNodeID']; ?></a>
 	        			</td>
-	        			<td class="<?php echo $objResultDisease['diseaseID']?> diseaseName"><?php echo $objResultDisease['name']; ?></td>
+	        			<td class="<?php echo $objResultSymptomNode['symptomNodeID']?> question"><?php echo $objResultSymptomNode['question']; ?></td>
 	        			<!-- <td class="001 remarks">none</td> -->
 	        		</tr>
-	        	<!-- 	<tr>
-	        			<td>
-	        				<a href="javascript:void(0);" class="choose-button">002</a>
-	        			</td>
-	        			<td class="002 diseaseName">Syndrome</td>
-	        			<td class="002 remarks">-</td>
-	        		</tr> -->
-
+	
 	        <?php
 	        	}//while ($objResultDisease=mysql_fetch_array($objQueryDisease))
 	        	mysql_close($objConnect);
@@ -138,7 +131,6 @@
 	      </div>  <!-- modal-body -->
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
 	      </div>  <!-- modal-footer -->
 	    </div>
 	  </div>
@@ -166,7 +158,7 @@
 					$('#have-node-data-panel').fadeIn(500);
 					
 				}	
-		});
+			});
 
 
 
@@ -182,6 +174,16 @@
     		});
 
 			$('#questionID').focus();
+
+			//Modal 
+			$('.choose-button').click(function(){
+				var id = $(this).html();
+				var disease = $('.'+id+'.question').html();
+				//var remarks = $('.'+id+'.remarks').html();
+				$('#question-value').val(disease);
+				$('#list-of-symptomNode-modal').modal('hide');
+			});
+
 
     	});//(document).ready
 

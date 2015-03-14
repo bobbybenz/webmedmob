@@ -101,9 +101,9 @@
 				<td><input name = "txtEditdiseaseID" type = "hidden" value = "<?php echo $objResult['diseaseID'];?>"><?php echo $objResult['diseaseID'];?></td>
 				<td><input name = "txtEditName" type = "text" value ="<?php echo $objResult['name'];?>"></td>
 				<td colspan="2" align="right"><div align="center">
-            		<input name="btnUpdate" type="button" id="btnUpdate" value="Update" OnClick="diseaseMN.hdnCmd.value='Update';diseaseMN.submit();">
-           	 		<input name="btnCancel" type="button" id="btnCancel" value="Cancel" OnClick="window.location='<?php echo $_SERVER["PHP_SELF"];?>';">
-          		</div></td>
+            <input name="btnUpdate" class="btn btn-info" type="button" id="btnUpdate" value="Update" OnClick="diseaseMN.hdnCmd.value='Update';diseaseMN.submit();">
+           	<input name="btnCancel" class="btn btn-default" type="button" id="btnCancel" value="Cancel" OnClick="window.location='<?php echo $_SERVER["PHP_SELF"];?>';">
+        </div></td>
         <td style="display:none;"></td>
 			</tr>
 	<?php

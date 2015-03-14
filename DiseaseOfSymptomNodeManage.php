@@ -147,7 +147,7 @@
 	        <h4 class="modal-title" id="myModalLabel">Diseases List</h4>
 	      </div>  <!-- modal-header -->
 	      <div class="modal-body">
-	        <table class="table table-bordered table-hover">
+	        <table id="modal-table" class="table table-bordered table-hover">
 	        	<thead>
 	        		<tr>
 	        			<th style="text-align: center;">ID</th>
@@ -190,7 +190,7 @@
 	      </div>  <!-- modal-body -->
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
 	      </div>  <!-- modal-footer -->
 	    </div>
 	  </div>
@@ -198,6 +198,7 @@
 
 <script>
 $(document).ready(function(){
+	//Modal
 	$('.choose-button').click(function(){
 		var id = $(this).html();
 		var disease = $('.'+id+'.diseaseName').html();
@@ -206,6 +207,8 @@ $(document).ready(function(){
 		$('#disease-value').val(disease);
 		$('#list-of-disease-modal').modal('hide');
 	});
+
+	$('#modal-table').dataTable();
 });
 </script>
 

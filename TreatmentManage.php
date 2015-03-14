@@ -98,13 +98,13 @@
 				<td><input name = "txtEditTreatmentID" type = "hidden" value = "<?php echo $objResult['treatmentID'];?>"><?php echo $objResult['treatmentID'];?></td>
 				<td><input name = "txtEditDiseaseID" type = "hidden" value = "<?php echo $objResult['diseaseID'];?>"><?php echo $objResult['name'];?></td>
 				<td>
-					<textarea style="resize:none;" name ="txtEditDetail" ><?php echo $objResult['detail'];?>
+					<textarea style="resize:none;height:85px;width:400px;" name ="txtEditDetail" ><?php echo $objResult['detail'];?>
 					</textarea>
 					<!-- <input name = "txtEditDetail" type = "text" value ="<?php echo $objResult['detail'];?>"> -->
 				</td>
 				<td colspan="2" align="right"><div align="center">
-            		<input name="btnUpdate" type="button" id="btnUpdate" value="Update" OnClick="treatmentMN.hdnCmd.value='Update';treatmentMN.submit();">
-           	 		<input name="btnCancel" type="button" id="btnCancel" value="Cancel" OnClick="window.location='<?php echo $_SERVER["PHP_SELF"]."?diseaseID=".$_GET['diseaseID']."&diseaseName=".$_GET['diseaseName'];?>';">
+            		<input name="btnUpdate" class="btn btn-info" type="button" id="btnUpdate" value="Update" OnClick="treatmentMN.hdnCmd.value='Update';treatmentMN.submit();">
+           	 		<input name="btnCancel" class="btn btn-default" type="button" id="btnCancel" value="Cancel" OnClick="window.location='<?php echo $_SERVER["PHP_SELF"]."?diseaseID=".$_GET['diseaseID']."&diseaseName=".$_GET['diseaseName'];?>';">
           		</div></td>
 			</tr>
 	<?php
@@ -145,11 +145,11 @@
         <tr>
           <td><input type= "hidden" name="txtAddTreatmentID" ></td>
           <td><input type= "hidden" name="txtAddDiseaseID" ></td>
-          <td><textarea name = "txtAddDetail" ></textarea></td>
+          <td><textarea style="height:85px;width:400px;" name = "txtAddDetail" ></textarea></td>
           <!-- <td><input type="text" name="txtAddDetail"></td> -->
           <td colspan="2" align="right">
             <div align="center">
-              <input name="btnAdd" type="button" id="btnAdd" value="Add" OnClick="treatmentMN.hdnCmd.value='Add';treatmentMN.submit();">
+              <input name="btnAdd" class="btn btn-success" type="button" id="btnAdd" value="Add" OnClick="treatmentMN.hdnCmd.value='Add';treatmentMN.submit();">
             </div>
           </td>
         </tr>
