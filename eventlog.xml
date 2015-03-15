@@ -1,0 +1,19 @@
+<Events><Event><System><Provider Name="ASP.NET 4.0.30319.0"/><EventID>1309</EventID><Level>2</Level><Task>0</Task><Keywords>Keywords</Keywords><TimeCreated SystemTime="2015-02-05T08:37:35Z"/><EventRecordID>896228484</EventRecordID><Channel>Application</Channel><Computer>RD00155DF09817</Computer><Security/></System><EventData><Data>3005</Data><Data>An unhandled exception has occurred.</Data><Data>2/5/2015 8:37:35 AM</Data><Data>2/5/2015 8:37:35 AM</Data><Data>e8a6e630de2b4eec8cf0d82f7ea23b16</Data><Data>7</Data><Data>1</Data><Data>0</Data><Data>/LM/W3SVC/457266819/ROOT-1-130675989874034789</Data><Data>Full</Data><Data>/</Data><Data>D:\home\site\wwwroot\</Data><Data>RD00155DF09817</Data><Data></Data><Data>32492</Data><Data>w3wp.exe</Data><Data>IIS APPPOOL\medmob</Data><Data>DirectoryNotFoundException</Data><Data>Could not find a part of the path 'D:\home\site\wwwroot'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   at System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   at System.IO.Directory.EnumerateFiles(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.AppRootContainsWebPagesFile(String path)
+   at System.Web.WebPages.Deployment.PreApplicationStartCode.OnChanged(String key, Object value, CacheItemRemovedReason reason)
+   at System.Web.Caching.CacheEntry.CallCacheItemRemovedCallback(CacheItemRemovedCallback callback, CacheItemRemovedReason reason)
+
+</Data><Data></Data><Data></Data><Data></Data><Data></Data><Data>False</Data><Data></Data><Data>IIS APPPOOL\medmob</Data><Data>10</Data><Data>IIS APPPOOL\medmob</Data><Data>False</Data><Data>   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileSystemEnumerableIterator`1.CommonInit()
+   at System.IO.FileSystemEnumerableIterator`1..ctor(String path, String originalUserPath, String searchPattern, SearchOption searchOption, SearchResultHandler`1 resultHandler, Boolean checkHost)
+   at System.IO.Directory.EnumerateFiles(String path)
+   at System.Web.WebPages.Deployment.WebPagesDeployment.AppRootContainsWebPagesFile(String path)
+   at System.Web.WebPages.Deployment.PreApplicationStartCode.OnChanged(String key, Object value, CacheItemRemovedReason reason)
+   at System.Web.Caching.CacheEntry.CallCacheItemRemovedCallback(CacheItemRemovedCallback callback, CacheItemRemovedReason reason)
+</Data></EventData></Event><Event><System><Provider Name="ASP.NET 4.0.30319.0"/><EventID>1301</EventID><Level>3</Level><Task>0</Task><Keywords>Keywords</Keywords><TimeCreated SystemTime="2015-02-05T08:37:35Z"/><EventRecordID>896228500</EventRecordID><Channel>Application</Channel><Computer>RD00155DF09817</Computer><Security/></System><EventData><Data>EventLogProvider</Data><Data>/</Data><Data>System.Web.HttpException (0x80004005): The EventLogWebEventProvider provider failed to log an event with the error code 0xC00CE558.
+   at System.Web.Management.EventLogWebEventProvider.ProcessEvent(WebBaseEvent eventRaised)
+   at System.Web.Management.WebBaseEvent.RaiseInternal(WebBaseEvent eventRaised, ArrayList firingRuleInfos, Int32 index0, Int32 index1)</Data></EventData></Event></Events>
