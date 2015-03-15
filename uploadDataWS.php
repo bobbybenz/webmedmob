@@ -10,13 +10,64 @@
 	$congenitalDisease="None";
 	$latitude =1123445.134;
 	$longitude=123455.13;
-	
-	insertPatientData($gender,$age,$height,$weight,$bmi,$bloodPressure,$congenitalDisease,$latitude,$longitude);
-	$Newid = mysql_insert_id();//Ner patient ID after INSERT data
-	echo $Newid."<br>";
-	insertPatientDisease($Newid,2,"เทส");
-	insertPatientSymptom($Newid,1,"อาการ");
-	returnJsonPatientData();
+	$jsonPDisease;
+	$jsonPSymptom;
+
+	// $gender =$_POST["gender"];
+	// $age=$_POST["age"];
+	// $height=$_POST["height"];
+	// $weight=$_POST["weight"];
+	// $bmi=$_POST["bmi"];
+	// $bloodPressure=$_POST["bloodPressure"];
+	// $congenitalDisease=$_POST["congenitalDisease"];
+	// $latitude =$_POST["latitude"];
+	// $longitude=$_POST["longitude"];
+	// $jsonPDisease=$_POST["jsonPDisease"];
+	// $jsonPSymptom=$_POST["jsonPSymptom"];
+
+	$arr[0]["CustomerID"]="C001";
+	$arr[0]["Name"]="Weerachai Nukitram";
+	$arr[0]["Email"]="win.weerachai@thaicreate.com";
+	$arr[1]["CustomerID"]="C002";
+	$arr[1]["Name"]="Narut Saekow";
+	$arr[1]["Email"]="landbenz@hotmail.com";
+	$arr[2]["CustomerID"]="C003";
+	$arr[2]["Name"]="aaaa";
+	$arr[2]["Email"]="aaaa@hotmail.com";
+
+	$jsonstr = json_encode($arr);
+	echo $jsonstr;
+
+	// $objPDisease = json_decode($jsonstr,true);
+	// $objPSymptom = json_decode($jsonstr,true);
+	$objJsonArray = json_decode($jsonstr,true);
+	print_r($objJsonArray);
+	foreach ($objJsonArray as $arrs) {
+		echo "<br>---".$arrs["CustomerID"];
+		echo "<br>---".$arrs["Name"];
+		echo "<br>---".$arrs["Email"];
+		echo "<br>-------------------------------------<br>";
+	}
+
+
+
+
+
+	//insertPatientData($gender,$age,$height,$weight,$bmi,$bloodPressure,$congenitalDisease,$latitude,$longitude);
+	//$Newid = mysql_insert_id();//Ner patient ID after INSERT data
+	//echo $Newid."<br>";
+	// foreach ($objJsonArray as $arrs) {
+	// 	$symptomID = $arrs[""];
+	// 	$symptomName = $arrs[""];
+	// 	insertPatientSymptom($Newid,$symptomID,$symptomName);
+	// }
+
+	// foreach ($objJsonArray as $arrs) {
+	// 	$diseaseID = $arrs[""];
+	// 	$diseaseName = $arrs[""];
+	// 	insertPatientDisease($Newid,$diseaseID,$diseaseName);
+	// }
+	//returnJsonPatientData();
 
 
 
