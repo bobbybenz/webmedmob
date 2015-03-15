@@ -16,7 +16,7 @@
             <div class="col-md-12">
             <form id="symptom-update" method="POST">
                 <h4>เลือกอาการ</h4>
-                <select id="symptom-list" name="symptomOption">
+                <select id="symptom-list" data-placeholder="เลือกอาการ" class="chosen-select" style="width:350px;" tabindex="2" name="symptomOption">
                       <option value="">       </option>
                 <?php while($objResultSymptom= mysql_fetch_array($objQuerysymptom)){?>
                       <option value="<?php echo $objResultSymptom['symptomID'];?>" 

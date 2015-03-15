@@ -25,6 +25,19 @@
 	// $jsonPDisease=$_POST["jsonPDisease"];
 	// $jsonPSymptom=$_POST["jsonPSymptom"];
 
+//	----test Send Value from android
+	//echo $gender ="gender:".$_POST["gender"]." age:".$_POST["age"];
+	// echo $age=$_POST["age"];
+	// echo $height=$_POST["height"];
+	// echo $weight=$_POST["weight"];
+	// echo $bmi=$_POST["bmi"];
+	// echo $bloodPressure=$_POST["bloodPressure"];
+	// echo $congenitalDisease=$_POST["congenitalDisease"];
+	// echo $latitude =$_POST["latitude"];
+	// echo $longitude=$_POST["longitude"];
+	// echo $jsonPDisease=$_POST["jsonPDisease"];
+	// echo $jsonPSymptom=$_POST["jsonPSymptom"];
+
 	$arr[0]["CustomerID"]="C001";
 	$arr[0]["Name"]="Weerachai Nukitram";
 	$arr[0]["Email"]="win.weerachai@thaicreate.com";
@@ -38,16 +51,16 @@
 	$jsonstr = json_encode($arr);
 	echo $jsonstr;
 
-	// $objPDisease = json_decode($jsonstr,true);
-	// $objPSymptom = json_decode($jsonstr,true);
-	$objJsonArray = json_decode($jsonstr,true);
-	print_r($objJsonArray);
-	foreach ($objJsonArray as $arrs) {
-		echo "<br>---".$arrs["CustomerID"];
-		echo "<br>---".$arrs["Name"];
-		echo "<br>---".$arrs["Email"];
-		echo "<br>-------------------------------------<br>";
-	}
+	// // $objPDisease = json_decode($jsonstr,true);
+	// // $objPSymptom = json_decode($jsonstr,true);
+	// $objJsonArray = json_decode($jsonstr,true);
+	// print_r($objJsonArray);
+	// foreach ($objJsonArray as $arrs) {
+	// 	echo "<br>---".$arrs["CustomerID"];
+	// 	echo "<br>---".$arrs["Name"];
+	// 	echo "<br>---".$arrs["Email"];
+	// 	echo "<br>-------------------------------------<br>";
+	// }
 
 
 
@@ -87,8 +100,8 @@
 		$objQuery = mysql_query($strSQLPS) or die ("ERROR Query [".$strSQLPS."]");
 	}
 
-	function returnJsonPatientData(){
 	//Return json ----------------------------------------------
+	function returnJsonPatientData(){
 		$strSQL = "SELECT * FROM patientdata";
 
 		$objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
