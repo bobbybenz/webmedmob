@@ -1,15 +1,6 @@
 <?php include('header.php');?>
-<?php include('subheader.php');?>
+<?php include('subheader_symptomNode.php');?>
 <?php
-    // $DB_HOST = "localhost";
-    // $DB_USER = "root";
-    // $DB_PASS = "";
-    // $DB_NAME = "medmobdb";
-
-    // $objConnect = mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
-    // $objDB = mysql_select_db($DB_NAME) or die("Couldn't select database");
-    // //$objDB = mysql_select_db("thaicreatedb");
-    // mysql_query("SET NAMES UTF8");
     include('connectAzure.php');
 
     $strSQL = "SELECT * FROM symptomnode AS sn JOIN symptom AS s ON sn.symptomID=s.symptomID 
@@ -67,8 +58,9 @@
 					<option>ความดัน</option>
 					<option>เพศชาย</option>
 					<option>เพศหญิง</option>
+					
 				</select>
-			</div>
+			</div>;
 		</div>
 		<br>
 		<!-- <input type="radio" name="chkAddNewType" value="NodeData">test -->

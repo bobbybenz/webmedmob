@@ -1,5 +1,5 @@
 <?php include('header.php'); ?>
-<?php include('subheader.php');?>
+<?php include('subheader_symptomNode.php');?>
 	<?php
 		echo $_GET['symptomNodeID'];
 		echo $_GET['type'];
@@ -72,12 +72,15 @@
 		.$_GET['symptomNodeID']."&type=".$_GET['type'];?>">
 			<input type="hidden" name="hdnCmd" value="">
 			<table class="table table-bordered table-hover">
+				<thead>
 				<tr>
-					<td>Disease of symptom ID</td>
-					<td>Disease ID</td>
-					<td>Disease Name</td>
-					<td>Delete</td>
+					<th><div align="center">Disease of symptom ID</div></th>
+					<th><div align="center">Disease ID</div></th>
+					<th><div align="center">Disease Name</div></th>
+					<th><div align="center">Delete</div></th>
 				</tr>
+				</thead>
+				<tbody>
 		<?php
 			while ($objResult = mysql_fetch_array($objQuery)) {
 				
@@ -122,6 +125,7 @@
 	            </div>
 	          </td>
 	        </tr>
+	        </tbody>
 	      </table>
 		</form>
 

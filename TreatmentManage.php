@@ -2,15 +2,6 @@
 
 
 	<?php
-		// $DB_HOST = "localhost";
-	 //    $DB_USER = "root";
-	 //    $DB_PASS = "";
-	 //    $DB_NAME = "medmobdb";
-
-	 //    $objConnect = mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
-	 //    $objDB = mysql_select_db($DB_NAME) or die("Couldn't select database");
-	 //    //$objDB = mysql_select_db("thaicreatedb");
-	 //    mysql_query("SET NAMES UTF8");
 		include('connectAzure.php');
 		//*** Add Condition ***//
 	    if(isset($_POST["hdnCmd"])){
@@ -66,23 +57,28 @@
     		
 
  	?>
- 	<?php include('subheader.php');?>
+ 	<?php include('subheader_disease.php');?>
  	<div class="container">
-	<h1>โรค</h1>
-	<?php echo $DiseaseName;?>
+	<h3>โรค<?php echo $DiseaseName;?></h3>
+	
 
-	<h1>Treatment List</h1>
+	<!-- <h1>Treatment List</h1> -->
 	<form name = "treatmentMN" method="post" action="<?php echo $_SERVER["PHP_SELF"]."?diseaseID="
 	.$_GET['diseaseID']."&diseaseName=".$_GET['diseaseName'];?>">
 		<input type="hidden" name="hdnCmd" value="">
 		<table class="table table-bordered table-hover">
+			<thead>
 			<tr>
-				<td>Treatment ID</td>
-				<td>Disease ID</td>
-				<td width="400px" >Detail</td>
-				<td>Edit</td>
-				<td>Delete</td>
+				<th><div align="center">Treatment ID</div></th>
+				<th><div align="center">Disease ID</div></th>
+				<th width="400px" ><div align="center">Detail</div></th>
+				<th><div align="center">Edit</div></th>
+				<th><div align="center">Delete</div></th>
 			</tr>
+			</thead>
+			<tbody>
+				
+		
 	<?php
 		while ($objResult = mysql_fetch_array($objQuery)) {
 			
@@ -153,6 +149,7 @@
             </div>
           </td>
         </tr>
+    	</tbody>
       </table>
 	</form>
 	

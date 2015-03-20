@@ -1,5 +1,5 @@
 <?php include('header.php');?>
-<?php include('subheader.php');?>
+<?php include('subheader_symptomNode.php');?>
 <?php
     // $DB_HOST = "localhost";
     // $DB_USER = "root";

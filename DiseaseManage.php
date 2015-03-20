@@ -1,16 +1,7 @@
 <?php include('header.php');?>
-<?php include('subheader.php');?>
+<?php include('subheader_disease.php');?>
 <?php if(isset($_SESSION['userID'])) { ?>
 	<?php
-		  // $DB_HOST = "localhost";
-	   //  $DB_USER = "root";
-	   //  $DB_PASS = "";
-	   //  $DB_NAME = "medmobdb";
-
-	   //  $objConnect = mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
-	   //  $objDB = mysql_select_db($DB_NAME) or die("Couldn't select database");
-	   //  //$objDB = mysql_select_db("thaicreatedb");
-	   //  mysql_query("SET NAMES UTF8");
      include('connectAzure.php'); 
 ?>
 <?php
@@ -79,10 +70,10 @@
 		<table id="test" class="table table-bordered table-hover">
       <thead>
 			<tr>
-				<td style="width: 10%;">Disease ID</td>
-				<td>Name</td>
-				<td style="width: 10%;">Edit</td>
-				<td style="width: 10%;">Delete</td>
+				<th style="width: 10%;"><div align="center">Disease ID</div></th>
+				<th><div align="center">Disease Name</div></th>
+				<th style="width: 10%;"><div align="center">Edit</div></th>
+				<th style="width: 10%;"><div align="center">Delete</div></th>
 			</tr>
       </thead>
       <tbody>

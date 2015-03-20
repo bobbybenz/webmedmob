@@ -1,6 +1,6 @@
 <?php 
     include('header.php');
-    include('subheader.php');
+    include('subheader_symptomNode.php');
 ?>
 <?php if(isset($_SESSION['userID'])) { ?>
 <?php
@@ -16,7 +16,7 @@
             <div class="col-md-12">
             <form id="symptom-update" method="POST">
                 <h4>เลือกอาการ</h4>
-                <select id="symptom-list" data-placeholder="เลือกอาการ" class="chosen-select" style="width:350px;" name="symptomOption">
+                <select id="symptom-list" data-placeholder="เลือกอาการ" class="selectpicker" data-live-search="true" name="symptomOption">
                       <option value="">       </option>
                 <?php while($objResultSymptom= mysql_fetch_array($objQuerysymptom)){?>
                       <option value="<?php echo $objResultSymptom['symptomID'];?>" 
@@ -31,12 +31,13 @@
                         <?php echo $objResultSymptom['name'];?></option>
                 <?php }//while($objQuerysymptom= mysql_fetch_array($objQuery))?>
                 </select>
-                <input type="submit" value="search">
+                <input type="submit" class="btn btn-primary" value="search">
             </form>
             </div>
         </div>
 
     <div class="row">
+        <div class="col-md-12">
     <?php
     if(isset($_GET['symptomID'])){
         $strSQL = "SELECT * FROM symptomnode WHERE symptomID = ".$_GET['symptomID'];
@@ -203,13 +204,11 @@ else{//Donothing
     //echo "string";
 }
 	?>
+    </div>
 </div>
 </div><!-- container -->
 <?php }//Session?>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-1.11.2.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+
 
     <script>
    		function goToSymptomNodeAdd(typeNode, symptomNodeID){
@@ -226,6 +225,7 @@ else{//Donothing
             });
 
         });
+
     </script>
 
 <?php include('footer.php');?>

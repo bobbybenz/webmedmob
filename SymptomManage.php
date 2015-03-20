@@ -1,5 +1,5 @@
 <?php include('header.php');?>
-<?php include('subheader.php');?>
+<?php include('subheader_symptom.php');?>
 <?php if(isset($_SESSION['userID'])) { ?>
   <?php
     // $DB_HOST = "localhost";
