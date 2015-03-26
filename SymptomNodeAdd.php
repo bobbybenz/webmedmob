@@ -32,7 +32,7 @@
 		
 		<input type="hidden" name="hidSymptomID" value=<?php echo $symptomID;?>>
 		<input type="hidden" name="hidTypeNode" value=<?php echo $typeNode;?>>
-		<input type="hidden" name="hidTypeNode" value=<?php echo $typeNode;?>>
+		
 
 		<div class="form-group">
 			<label for="InputSymptomName">Symptom Name : </label>
@@ -58,9 +58,10 @@
 					<option>ความดัน</option>
 					<option>เพศชาย</option>
 					<option>เพศหญิง</option>
+					<option>ชีพจร</option>
 					
 				</select>
-			</div>;
+			</div>
 		</div>
 		<br>
 		<!-- <input type="radio" name="chkAddNewType" value="NodeData">test -->
@@ -69,7 +70,7 @@
 			<!-- Value from list of value -->
 			Question: <input type = "text" readonly id="question-value">
 			<input type="button" value="..." data-toggle="modal" data-target="#list-of-symptomNode-modal">
-			<input type = "hidden" name ="txtAddQuestion2" value="...">
+			<input id="id-link-node" type = "hidden" name ="idLinkNode">
 		</div>
 		<br>
 		<input class="btn btn-success" type="submit" name="btnAddSymptomNode" value="Add Node">
@@ -173,9 +174,11 @@
 			$('.choose-button').click(function(){
 				var id = $(this).html();
 				var disease = $('.'+id+'.question').html();
-				//var remarks = $('.'+id+'.remarks').html();
+				//$('#id-link-node').val(id);
+				$('input[name="idLinkNode"]').attr('value',id);
 				$('#question-value').val(disease);
 				$('#list-of-symptomNode-modal').modal('hide');
+
 			});
 			$('#modal-table').dataTable();
 

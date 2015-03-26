@@ -40,7 +40,9 @@
 				<select name="slcTypeAdditionData">
 					<option>อุณหภูมิ</option>
 					<option>ความดัน</option>
-					<option>ผลตรวจเลือด</option>
+					<option>เพศชาย</option>
+					<option>เพศหญิง</option>
+					<option>ชีพจร</option>
 				</select>
 			</div><!-- type-addition-data -->
 		  </div><!-- checkbox -->
