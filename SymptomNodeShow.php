@@ -51,7 +51,7 @@
         echo $objResult['isRoot'];
         echo $objResult['isYesNode'];
         echo $objResult['isNoNode'];
-        echo $objResult['question'];
+        echo "<a data-toggle='modal' data-target='#testModal'>".$objResult['question']."</a>";
         echo $objResult['yesNodeID'];
         echo $objResult['noNodeID'];
         echo $objResult['parentNodeID'];
@@ -127,18 +127,22 @@
     //echo "Test :".$symptomID."<br>";
     while($objResult= mysql_fetch_array($objQuery)){
         $existData = 1;
-    	echo "ID = ".$objResult['symptomNodeID']."---";
+        //echo "<div id='display-node ".$objResult['symptomNodeID']."' data-toggle='modal' data-target='#testModal'>";
+        //echo "<div id='display-node' data-toggle='modal' data-target='#testModal'>";
+    	echo "ID = <span id ='id-node'>".$objResult['symptomNodeID']."</span>---";
     	echo $objResult['symptomID'];
     	echo $objResult['isRoot'];
     	echo $objResult['isYesNode'];
     	echo $objResult['isNoNode'];
-    	echo $objResult['question'];
+    	//echo "<span id='question-node ".$objResult['symptomNodeID']."' data-toggle='modal' data-target='#testModal'>".$objResult['question']."</span>";
+        echo "<span id='question-node' data-toggle='modal' data-target='#testModal'>".$objResult['question']."</span>"; 
     	echo $objResult['yesNodeID'];
     	echo $objResult['noNodeID'];
     	echo $objResult['parentNodeID'];
     	echo $objResult['haveAdditionData'];
     	echo $objResult['typeAdditionData'];
-    
+        // echo "</div>";
+        // echo "<div style='float:left;'>";
     	if($objResult['yesNodeID'] ==null){
     		// echo "<input type='button' value='Yes Node' Onclick='JavaScript:alert(".$objResult['symptomNodeID'].")' >";	
     	?>
@@ -156,6 +160,7 @@
 	    	Onclick='JavaScript:
 	    	goToSymptomNodeAdd("noNode","<?php echo $objResult['symptomNodeID'];?>");
 	    	'>
+
     	<?php
     	}//if($objResult['noNodeID'] ==null)
     	
@@ -185,7 +190,7 @@
     
     <?php
             }
-
+           // echo "</div>";
             echo "<br>";
         }//while($objResult= mysql_fetch_array($objQuery))
     if($existData==0){
@@ -210,6 +215,28 @@ else{//Donothing
 <?php }//Session?>
 
 
+<!-- Modal -->
+<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Symptom Node Detail</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <label>Question:</label>
+            <input type="text" class="form-control" id="edit-question"></input>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="button-update">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <script>
    		function goToSymptomNodeAdd(typeNode, symptomNodeID){
    			//alert("typeNode:"+typeNode+"symptomNodeID:"+symptomNodeID);
@@ -221,11 +248,33 @@ else{//Donothing
             $('#symptom-list').change(function(){
                 $('#symptom-update').submit();
                 //alert("test");
-
             });
 
-        });
+              $('#question-node').click(function(){
+                  var questionNode = $("#question-node").html();
+                  alert("test"+questionNode);
+                  $("#edit-question").val(questionNode);
+                  //$("#question-node").html("");              
+            });
 
+            $('#button-update').click(function(){
+                var data = $('#edit-question').val();
+                var idNode = $('#id-node').html();
+                //alert("Data : "+data);
+                 $.ajax({
+                    type: "POST",
+                    url: "SymptomNodeUpdate.php",
+                    data: {data: data,type: "update",idnode:idNode},
+                    success: function(result) {
+                        //alert("result : "+result);
+                        $('#question-node').html(result);
+                        $('#testModal').modal('hide');
+                    }
+                });
+            });
+
+
+        });
     </script>
 
 <?php include('footer.php');?>

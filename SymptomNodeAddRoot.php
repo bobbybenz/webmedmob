@@ -21,6 +21,7 @@
 		<div class="col-md-12">
 		<form method="POST" action="SymptomNodeCompute.php">
 		  <div class="form-group">
+		  	<input type="hidden" name="hidTypeNode" value="rootNode">
 		  	<input type="hidden" name="hidAddRoot" value="addRoot">
 		  	<input type="hidden" name="hidSymptomID" value="<?php echo $objResult['symptomID'];?>">
 		    <label for="systomNameTxt">Symptom Name</label>
