@@ -6,18 +6,33 @@
 <?php
     include('connectAzure.php');
     
+    //check ID
+    if(isset($_GET['symptomID'])){
+        $sqlCheck = "SELECT count(*) FROM symptom WHERE symptomID =".$_GET['symptomID'];
+        $objQueryCheck = mysql_query($sqlCheck) or die ("Error Query [".$sqlCheck."]");
+        $dataArray = mysql_fetch_array($objQueryCheck);
+        $exist  = $dataArray['count(*)'];
+        //echo($exist);
+        if($exist == '0'){
+    ?>
+            <script>window.location = "SymptomNodeShow.php"</script>
+<?php
+        }
+    }
+   
 ?>
 <?php
     $strSQLsymptom = "SELECT * FROM symptom";
     $objQuerysymptom = mysql_query($strSQLsymptom) or die ("Error Query [".$strSQLsymptom."]");
+    $showName = NULL;
 ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+            <div class="searchSynptom" align="right">
             <form id="symptom-update" method="GET">
-                <h4>เลือกอาการ</h4>
-                <select id="symptom-list" data-placeholder="เลือกอาการ" class="selectpicker" data-live-search="true" name="symptomID">
-                      <option value="">       </option>
+                <select id="symptom-list" title="เลือกอาการ" class="selectpicker" data-live-search="true" name="symptomID">
+                    <option data-hidden="true" value=""></option>
                 <?php while($objResultSymptom= mysql_fetch_array($objQuerysymptom)){?>
                       <option value="<?php echo $objResultSymptom['symptomID'];?>" 
                         <?php //keep the recent selector
@@ -25,15 +40,25 @@
                             if($_POST['symptomOption']== $objResultSymptom['symptomID'] ||$_GET['symptomID']==$objResultSymptom['symptomID']) {
                             echo "selected";
                             $symptomID = $objResultSymptom['symptomID'];
+                            $showName = $objResultSymptom['name'];
                             }
                         }
                         ?>>
                         <?php echo $objResultSymptom['name'];?></option>
                 <?php }//while($objQuerysymptom= mysql_fetch_array($objQuery))?>
                 </select>
-                <input type="submit" class="btn btn-primary" value="search">
+                <input type="submit" class="btn btn-primary" value="ค้นหา">
             </form>
+            </div><!-- class="searchSynptom" -->
+            </div><!-- class="col-md-12" -->
+        </div><!-- class="row" -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>รายการคำถามของอาการ: <?php if($showName!=NULL){echo $showName;}else{echo "-";}?></h2>
+                <hr/>
             </div>
+
         </div>
 
     <div class="row">
@@ -146,12 +171,13 @@ else{//Donothing
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Symptom Node Detail</h4>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขคำถาม</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
-            <label>Question:</label>
-            <input type="text" class="form-control" id="edit-question"></input>
+            <label>คำถาม:</label>
+            <!-- <input type="text" class="form-control" id="edit-question"></input> -->
+            <textarea id="edit-question" class="form-control" rows="3"></textarea>
             <input type="hidden" id="hid-id"/>
         </div>
       </div>

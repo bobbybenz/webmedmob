@@ -64,7 +64,8 @@
   
 
   <div class="container">
-	<h1>Disease List</h1>
+	<h2>รายการโรค</h2>
+  <hr/>
 	<form name = "diseaseMN" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 		<input type="hidden" name="hdnCmd" value="">
 		<table id="test" class="table table-bordered table-hover">

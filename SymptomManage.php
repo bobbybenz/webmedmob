@@ -67,7 +67,8 @@
   
 
   <div class="container">
-    <h1>Symptom List</h1>
+    <h2>รายการลักษณะอาการ</h2>
+    <hr/>
     <form name="symptomMN" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
       <input type="hidden" name="hdnCmd" value="">
       <table id="test" class="table table-bordered table-hover">
@@ -98,7 +99,7 @@
           <td><input type="text" name="txtEditName" class="form-control" autofocus value="<?php echo $objResult["name"];?>"></td>
           <td><input type="text" name="txtEditFlowNumber" class="form-control" value="<?php echo $objResult["flowNumber"];?>"></td>
           <td>   
-            <select name = "txtEditPartOfBody">
+            <select name = "txtEditPartOfBody" class="selectpicker">
               <option value = "head" <?php if($objResult["partOfBody"]=="head") echo "selected";?> >Head</option>
               <option value = "body" <?php if($objResult["partOfBody"]=="body") echo "selected";?> >Body</option>
               <option value = "arm_leg" <?php if($objResult["partOfBody"]=="arm_leg") echo "selected";?>>Arm / Leg</option>
