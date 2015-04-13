@@ -2,15 +2,6 @@
 <?php include('subheader_symptom.php');?>
 <?php if(isset($_SESSION['userID'])) { ?>
   <?php
-    // $DB_HOST = "localhost";
-    // $DB_USER = "root";
-    // $DB_PASS = "";
-    // $DB_NAME = "medmobdb";
-
-    // $objConnect = mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
-    // $objDB = mysql_select_db($DB_NAME) or die("Couldn't select database");
-    // //$objDB = mysql_select_db("thaicreatedb");
-    // mysql_query("SET NAMES UTF8");
     include('connectAzure.php');
     //*** Add Condition ***//
     if(isset($_POST["hdnCmd"])){
@@ -152,7 +143,7 @@
           <td><input type="text" name="txtAddName" class="form-control"></td>
           <td><input type="text" name="txtAddFlowNumber" class="form-control"></td>
           <td>
-            <select name = "txtAddPartOfBody">
+            <select name = "txtAddPartOfBody" class="selectpicker">
               <option value = "head">Head</option>
               <option value = "body">Body</option>
               <option value = "arm_leg">Arm / Leg</option>
@@ -178,7 +169,9 @@
 
 <script>
 $(document).ready(function(){
-  $('#test').dataTable();
+  $('#test').dataTable({
+    "iDisplayLength": 25
+  });
 
 });
 </script>

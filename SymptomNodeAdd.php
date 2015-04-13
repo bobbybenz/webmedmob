@@ -53,13 +53,12 @@
 			<br>
 			<div id="type-addition-data">
 				Type Addition Data: 
-				<select name="slcTypeAdditionData">
+				<select name="slcTypeAdditionData" class="selectpicker">
 					<option>อุณหภูมิ</option>
 					<option>ความดัน</option>
 					<option>เพศชาย</option>
 					<option>เพศหญิง</option>
-					<option>ชีพจร</option>
-					
+					<option>ชีพจร</option>	
 				</select>
 			</div>
 		</div>
@@ -86,43 +85,35 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Symptom Node List</h4>
+	      	<div class="row">
+	      		<div class="col-md-5">
+	      			
+	        		<h4 class="modal-title" id="myModalLabel">รายการคำถามตามอาการ</h4>
+	      		</div><!-- class="col-md-6" -->
+<?php
+    $strSQLsymptom = "SELECT * FROM symptom";
+    $objQuerysymptom = mysql_query($strSQLsymptom) or die ("Error Query [".$strSQLsymptom."]");
+    $showName = NULL;
+?>
+	      		<div class="col-md-7">
+	      			<div align="right">
+		      		<select id="select-sym" title="เลือกอาการ" class="selectpicker" data-live-search="true" name="symptomID">
+	                    <option data-hidden="true" value=""></option>
+	                <?php while($objResultSymptom= mysql_fetch_array($objQuerysymptom)){?>
+	                      <option value="<?php echo $objResultSymptom['symptomID'];?>" >
+	                        <?php echo $objResultSymptom['name'];?></option>
+	                <?php }//while($objQuerysymptom= mysql_fetch_array($objQuery))?>
+	                </select>
+	      			<input type="button" class="btn btn-primary" id="search-btn" value="ค้นหา">
+	      			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      			</div><!-- align="right" -->
+	      		</div><!-- class="col-md-6" -->
+	      	</div><!-- class="row" -->
 	      </div>  <!-- modal-header -->
 	      <div class="modal-body">
-	        <table id="modal-table" class="table table-bordered table-hover">
-	        	<thead>
-	        		<tr>
-	        			<th style="text-align: center;">ID</th>
-	        			<th style="text-align: center;">Question</th>
-	        		</tr>
-	        	</thead>
-	        	<tbody>
-	        <?php
-
-	        	$strSQLSymptomNode="SELECT * FROM symptomnode";
-	        	$objQuerySymptomNode=mysql_query($strSQLSymptomNode) or die ("Error Query [".$strSQLSymptomNode."]");
-	        	//$objQuery = mysql_query($strSQLDisease) or die ("Error Query [".$strSQLDisease."]");
-	        	while ($objResultSymptomNode=mysql_fetch_array($objQuerySymptomNode)) {
-
-	        		# code...
-	        	
-	        ?>
-	        		<tr>
-	        			<td style="text-align: center;">
-	        				<a href="javascript:void(0);" class="choose-button"><?php echo 
-	        				$objResultSymptomNode['symptomNodeID']; ?></a>
-	        			</td>
-	        			<td class="<?php echo $objResultSymptomNode['symptomNodeID']?> question"><?php echo $objResultSymptomNode['question']; ?></td>
-	        			<!-- <td class="001 remarks">none</td> -->
-	        		</tr>
-	
-	        <?php
-	        	}//while ($objResultDisease=mysql_fetch_array($objQueryDisease))
-	        	mysql_close($objConnect);
-	        ?>
-	        	</tbody>
-	        </table>
+	      	<div class="show-table">
+	      			
+	      	</div><!-- class="show-table" -->
 	      </div>  <!-- modal-body -->
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -182,6 +173,34 @@
 			});
 			$('#modal-table').dataTable();
 
+			//Select madal
+		
+			$('#search-btn').click(function(){
+				var value = $('#select-sym').val();
+				alert(value);
+				$.ajax({
+                    type: "POST",
+                    url: "showmodaltable.php",
+                    data: {data: value},
+                    success: function(result) {
+                        alert("result : "+result);
+                        $('.show-table').html(result);
+
+                    }
+                });
+			});
+
+			// $(document).on("change","#select-sym", function(){
+			// 	alert('test');
+			// });
+
+			// $('.selectpicker').on('change', function(){
+   //  			//var selected = $(this).find("option:selected").val();
+   //  			//alert(selected);
+   //  			alert("test");
+  	// 		});
+
+  		
 
     	});//(document).ready
 

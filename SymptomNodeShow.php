@@ -8,17 +8,19 @@
     
     //check ID
     if(isset($_GET['symptomID'])){
-        $sqlCheck = "SELECT count(*) FROM symptom WHERE symptomID =".$_GET['symptomID'];
-        $objQueryCheck = mysql_query($sqlCheck) or die ("Error Query [".$sqlCheck."]");
-        $dataArray = mysql_fetch_array($objQueryCheck);
-        $exist  = $dataArray['count(*)'];
-        //echo($exist);
-        if($exist == '0'){
-    ?>
-            <script>window.location = "SymptomNodeShow.php"</script>
-<?php
-        }
-    }
+        if($_GET['symptomID']!=""){
+            $sqlCheck = "SELECT count(*) FROM symptom WHERE symptomID =".$_GET['symptomID'];
+            $objQueryCheck = mysql_query($sqlCheck) or die ("Error Query [".$sqlCheck."]");
+            $dataArray = mysql_fetch_array($objQueryCheck);
+            $exist  = $dataArray['count(*)'];
+            //echo($exist);
+            if($exist == '0'){
+        ?>
+                <script>window.location = "SymptomNodeShow.php"</script>
+    <?php
+            }
+      }//End: if($_GET['symptomID']!=""
+    }//End: isset($_GET['symptomID'])
    
 ?>
 <?php
@@ -55,7 +57,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h2>รายการคำถามของอาการ: <?php if($showName!=NULL){echo $showName;}else{echo "-";}?></h2>
+                <h2>รายการคำถามของอาการ: <i><?php if($showName!=NULL){echo $showName;}else{echo "-";}?></i></h2>
                 <hr/>
             </div>
 

@@ -15,11 +15,11 @@ if(isset($_POST['hidTypeNode'])){
         echo $isRoot=1;
 
     }
-
+    echo $symptomID=$_POST['hidSymptomID'];
 //----Add Yes - NO new node ----- New Data
 if($_POST['chkAddNewType']=="newNodeData"){
     echo $question = $_POST['txtAddQuestion'];
-    echo $symptomID=$_POST['hidSymptomID'];
+    
     //Come from Hava data Node. This node is a Root Node and link from another Symptom
     if(isset($_POST['rootNode'])){
     	//Come from Hava data Node. This node is a Root Node and link from another Symptom
@@ -64,7 +64,7 @@ if($_POST['chkAddNewType']=="newNodeData"){
     }
 }//End: Add Yes - NO new node
 else if($_POST['chkAddNewType']=="haveNodeData"){
-    //Update left or right node with
+    //Update left or right node only link node
     echo "<br>";
     echo $linkNodeID = $_POST['idLinkNode'];
 
@@ -80,7 +80,7 @@ else if($_POST['chkAddNewType']=="haveNodeData"){
         '".$parentNodeID."' ";
         mysql_query($strSQLUpdate);
     }
-}
+}//End: Update left or right node only link node 
 else{//Add Root Node
     echo "test Add Root";
     if(isset($_POST['hidAddRoot'])){

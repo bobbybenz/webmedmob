@@ -150,7 +150,9 @@
 
 <script>
 $(document).ready(function(){
-  $('#test').dataTable();
+  $('#test').dataTable({
+    "iDisplayLength": 25
+  });
 
 });
 </script>

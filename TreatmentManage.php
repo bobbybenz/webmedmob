@@ -59,7 +59,8 @@
  	?>
  	<?php include('subheader_disease.php');?>
  	<div class="container">
-	<h3>โรค<?php echo $DiseaseName;?></h3>
+ 	<h2>ข้อแนะนำการรักษา : <i>โรค<?php echo $DiseaseName;?></i></h2>
+	<hr/>
 	
 
 	<!-- <h1>Treatment List</h1> -->
@@ -94,9 +95,11 @@
 				<td><input name = "txtEditTreatmentID" type = "hidden" value = "<?php echo $objResult['treatmentID'];?>"><?php echo $objResult['treatmentID'];?></td>
 				<td><input name = "txtEditDiseaseID" type = "hidden" value = "<?php echo $objResult['diseaseID'];?>"><?php echo $objResult['name'];?></td>
 				<td>
-					<textarea style="resize:none;height:85px;width:400px;" name ="txtEditDetail" ><?php echo $objResult['detail'];?>
-					</textarea>
-					<!-- <input name = "txtEditDetail" type = "text" value ="<?php echo $objResult['detail'];?>"> -->
+					<div class="form-group">
+						<textarea style="resize:none;height:85px;width:400px;" name ="txtEditDetail" class="form-control" rows="4"><?php echo $objResult['detail'];?>
+						</textarea>
+					</div>
+						<!-- <input name = "txtEditDetail" type = "text" value ="<?php echo $objResult['detail'];?>"> -->
 				</td>
 				<td colspan="2" align="right"><div align="center">
             		<input name="btnUpdate" class="btn btn-info" type="button" id="btnUpdate" value="Update" OnClick="treatmentMN.hdnCmd.value='Update';treatmentMN.submit();">
@@ -141,7 +144,7 @@
         <tr>
           <td><input type= "hidden" name="txtAddTreatmentID" ></td>
           <td><input type= "hidden" name="txtAddDiseaseID" ></td>
-          <td><textarea style="height:85px;width:400px;" name = "txtAddDetail" ></textarea></td>
+          <td><textarea style="height:85px;width:400px;" name = "txtAddDetail" class="form-control" rows="4"></textarea></td>
           <!-- <td><input type="text" name="txtAddDetail"></td> -->
           <td colspan="2" align="right">
             <div align="center">
