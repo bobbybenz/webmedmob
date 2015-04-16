@@ -1,3 +1,4 @@
+<?php $title = "เพิ่มโหนด";?>
 <?php include('header.php');?>
 <?php include('subheader_symptomNode.php');?>
 <?php
@@ -20,62 +21,108 @@
     	$typeNode="rootNode";
     }
     $parentNodeID = $objResult['symptomNodeID'];
-    echo $parentNodeQuestion = $objResult['question'];
+    $parentNodeQuestion = $objResult['question'];
     $symptomID=$objResult['symptomID'];
     $symptomName=$objResult['name'];
   
 
 ?>
-<h3><?php echo $_GET['typeNode'];?></h3>
+<!-- <h3><?php echo $_GET['typeNode'];?></h3> -->
 <div class="container">
-	<form class="form-horizontal" name = "symptomNodeAdd" method="post" action="SymptomNodeCompute.php">
-		
-		<input type="hidden" name="hidSymptomID" value=<?php echo $symptomID;?>>
-		<input type="hidden" name="hidTypeNode" value=<?php echo $typeNode;?>>
-		
+	<form class="form-horizontal" id="form-add-node" name = "symptomNodeAdd" method="post" action="SymptomNodeCompute.php">
+		<div class="row"><!--Row Header -->
+			<div class="col-md-12"><!--Col Header -->
+				<h2>เพิ่มข้อมูลชนิด: <?php echo $_GET['typeNode'];?></h2>
+				<hr>
 
-		<div class="form-group">
-			<label for="InputSymptomName">Symptom Name : </label>
-			<input id="InputSymptomName" type="text" name="txtAddSymptom" readonly value=<?php echo $symptomName?>>
-	
-		</div>	
-		Parent ID:<input type="text" disabled value=<?php echo $parentNodeID?>>
-		<input type="hidden" name="txtAddParentID" value=<?php echo $parentNodeID?>>
-		<br>
-		Parent Question:<input type="text" disabled name="txtAddParentQuestion" value=<?php echo $parentNodeQuestion?>>
-		<br>	
-		<input class="check-node-data new-node-data" type="radio" name="chkAddNewType" checked value="newNodeData"> New Data
+				<input type="hidden" name="hidSymptomID" value=<?php echo $symptomID;?>>
+				<input type="hidden" name="hidTypeNode" value=<?php echo $typeNode;?>>
+				
+
+		<!-- 		<div class="form-group" style="margin-top:30px;">
+					<label for="InputSymptomName">Symptom Name : </label>
+					<input id="InputSymptomName" type="text" name="txtAddSymptom" class="form-control" readonly value=<?php echo $symptomName?>>
+				</div> -->	
+
+				<div class="form-group" style="margin-top:30px;">
+				    <label for="InputSymptomName" class="col-sm-2 control-label" style="text-align:left;">Symptom Name : </label>
+				    <div class="col-sm-3">
+				      <input id="InputSymptomName" type="text" name="txtAddSymptom" class="form-control" readonly value=<?php echo $symptomName?>>
+				    </div>
+				    <label  class="col-sm-2 control-label">Parent ID: </label>
+				    <div class="col-sm-2">
+				      <input class="form-control" input type="text" readonly value=<?php echo $parentNodeID?>>
+				      <input type="hidden" name="txtAddParentID" value=<?php echo $parentNodeID?>>
+				    </div>
+				</div>
+				<!-- Parent ID:<input type="text" readonly value=<?php echo $parentNodeID?>>
+				<input type="hidden" name="txtAddParentID" value=<?php echo $parentNodeID?>>
+				<br> -->
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label" style="text-align:left;">Parent Question:</label>
+					<div class="col-sm-5">
+						<textarea class="form-control" readonly name="txtAddParentQuestion" row="3" ><?php echo $parentNodeQuestion?></textarea>
+					</div>
+				</div>
+			<!-- 	Parent Question:<input type="text" readonly name="txtAddParentQuestion" value=<?php echo $parentNodeQuestion?>>
+				<br>	 -->
+			</div><!--End: Col Header -->
+			
+		</div><!--End: Row Header -->
+		
+		<input class="check-node-data new-node-data" type="radio" name="chkAddNewType" checked value="newNodeData"><span style="font-size: 18px; font-weight: bold;"> ข้อมูลใหม่</span>
+		<hr/>
 		<div id="new-node-data-panel">
-			Question : <!-- <input type = "text" name ="txtAddQuestion"> -->
-			<textarea id="questionID" class="form-control" name ="txtAddQuestion" rows="5"></textarea>
-			<br>
-			<input class="have-addition-data" type = "checkbox" name = "chkAdditionData">Have Addition Data
-			<br>
-			<div id="type-addition-data">
-				Type Addition Data: 
-				<select name="slcTypeAdditionData" class="selectpicker">
-					<option>อุณหภูมิ</option>
-					<option>ความดัน</option>
-					<option>เพศชาย</option>
-					<option>เพศหญิง</option>
-					<option>ชีพจร</option>	
-				</select>
-			</div>
-		</div>
-		<br>
+			<div class="row"><!-- Add data Row-->
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="form-group">
+						<label>คำถาม: </label>
+						<textarea id="questionID" class="form-control" name ="txtAddQuestion" rows="4"></textarea>
+					</div>
+					<input class="have-addition-data" type = "checkbox" name = "chkAdditionData">ข้อมูลเพิ่มเติม
+					<br>
+					<div id="type-addition-data">
+						ประเภทของข้อมูลเพิ่มเติม: 
+						<select name="slcTypeAdditionData" class="selectpicker">
+							<option>อุณหภูมิ</option>
+							<option>ความดัน</option>
+							<option>เพศชาย</option>
+							<option>เพศหญิง</option>
+							<option>ชีพจร</option>	
+						</select>
+					</div><!-- End: type-addition-data -->
+
+				</div>	
+			</div><!--End: Add data Row -->
+		</div><!--End: new-node-data-panel -->
+		<hr/>
 		<!-- <input type="radio" name="chkAddNewType" value="NodeData">test -->
-		<input class="check-node-data have-node-data" type="radio" name="chkAddNewType" value="haveNodeData"> Have Data Node
+		<input class="check-node-data have-node-data" type="radio" name="chkAddNewType" value="haveNodeData"><span style="font-size: 18px; font-weight: bold;"> เชื่อมข้อมูลจากโหนดอื่น</span>
+		<hr/>
 		<div id="have-node-data-panel">
-			<!-- Value from list of value -->
-			Question: <input type = "text" readonly id="question-value">
-			<input type="button" value="..." data-toggle="modal" data-target="#list-of-symptomNode-modal">
-			<input id="id-link-node" type = "hidden" name ="idLinkNode">
-		</div>
-		<br>
-		<input class="btn btn-success" type="submit" name="btnAddSymptomNode" value="Add Node">
-	
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+
+					<div class="form-group">
+						<!-- Value from list of value -->
+						<label>คำถามจากรายการ:</label>
+						<textarea class="form-control col-sm-5" style="resize:none;" value="" readonly id="question-value" row="2"></textarea>
+						<!-- Question: <input type = "text" readonly id="question-value"> -->
+						<input class="btn btn-link" type="button" value="คำถาม..." data-toggle="modal" data-target="#list-of-symptomNode-modal">
+						<input id="id-link-node" type = "hidden" name ="idLinkNode">
+					</div>
+
+				</div>
+			</div><!-- row -->
+		</div><!-- have-node-data-panel -->
+		<hr/>
+		<input class="btn btn-success" type="button" name="btnAddSymptomNode" value="เพิ่ม" onclick="questionCheck();">
+		<input class="btn btn-danger" type = "button" value ="ยกเลิก" Onclick = "location.href ='SymptomNodeShow.php?symptomID=<?php echo $symptomID;?>'">
 	</form>
-	<input type = "button" value ="Back" Onclick = "location.href ='SymptomNodeShow.php'">
+	
 </div><!-- container -->
 
 
@@ -88,7 +135,7 @@
 	      	<div class="row">
 	      		<div class="col-md-5">
 	      			
-	        		<h4 class="modal-title" id="myModalLabel">รายการคำถามตามอาการ</h4>
+	        		<h4 class="modal-title" id="myModalLabel">รายการคำถามอาการ: </h4><!-- <span id="sym">-</span> -->
 	      		</div><!-- class="col-md-6" -->
 <?php
     $strSQLsymptom = "SELECT * FROM symptom";
@@ -176,35 +223,54 @@
 			//Select madal
 		
 			$('#search-btn').click(function(){
-				var value = $('#select-sym').val();
-				alert(value);
-				$.ajax({
-                    type: "POST",
-                    url: "showmodaltable.php",
-                    data: {data: value},
-                    success: function(result) {
-                        alert("result : "+result);
-                        $('.show-table').html(result);
-
-                    }
-                });
+                // $('#sym').html($('#select-sym').val());
+                displayModalTable();
 			});
 
+			
 			// $(document).on("change","#select-sym", function(){
 			// 	alert('test');
 			// });
+			
+			// if(tempSelect != $('.select-sym').val()){
+			// 	tempSelect = $('.select-sym').val();
+			// 	displayModalTable();
+			// }
 
-			// $('.selectpicker').on('change', function(){
-   //  			//var selected = $(this).find("option:selected").val();
-   //  			//alert(selected);
-   //  			alert("test");
-  	// 		});
-
-  		
-
+		  	// 	  if($('#symptom-list').val() != "a"){
+		   //                  alert("No data");
+		   //                  displayModalTable();
+		   //              }
+   	
     	});//(document).ready
 
+		function questionCheck(){
+   				
+   				var q1 = $('#questionID').val();
+   				var q2 = $('#question-value').val();
+   				//alert("value"+q1 +" and "+ q2)
+   				if($('#questionID').val()== "" && $('#question-value').val()== ""){
+   					alert("กรุณาเพิ่มข้อมูลคำถาม");
+   				}else{
+   					$('#form-add-node').submit();
+   				}
 
+   			}
+
+		function displayModalTable(){
+				var value = $('#select-sym').val();
+				//alert(value);
+				$.ajax({
+	                type: "POST",
+	                url: "showmodaltable.php",
+	                data: {data: value},
+	                success: function(result) {
+	                    //alert("result : "+result);
+	                    $('.show-table').html(result);
+
+	                }
+	            });
+			}
     
     </script>
 <?php include('footer.php'); ?>

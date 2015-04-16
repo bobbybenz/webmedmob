@@ -6,7 +6,7 @@
 			$idnode = $_POST['idnode'];
 			$datanode = $_POST['data'];
 			$strSQL = "UPDATE symptomnode SET question = '".$datanode."' WHERE symptomNodeID = '".$idnode."'";
-			//$objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
+			$objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
 			echo $datanode;
 		
 		}else if($_POST['type']=="delete"){

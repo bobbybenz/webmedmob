@@ -1,20 +1,13 @@
+<?php $title = "เพิ่มโรคในการวินิจฉัย";?>
 <?php include('header.php'); ?>
 <?php include('subheader_symptomNode.php');?>
 	<?php
-		echo $_GET['symptomNodeID'];
-		echo $_GET['type'];
+		$_GET['symptomNodeID'];
+		$_GET['type'];
 	?>
 
 	<?php
-		// $DB_HOST = "localhost";
-	 //    $DB_USER = "root";
-	 //    $DB_PASS = "";
-	 //    $DB_NAME = "medmobdb";
 
-	 //    $objConnect = mysql_connect($DB_HOST,$DB_USER,$DB_PASS);
-	 //    $objDB = mysql_select_db($DB_NAME) or die("Couldn't select database");
-	 //    //$objDB = mysql_select_db("thaicreatedb");
-	 //    mysql_query("SET NAMES UTF8");
 	include('connectAzure.php');
 		//*** Add Condition ***//
 	    if(isset($_POST["hdnCmd"])){
@@ -54,8 +47,6 @@
 	    	
     		$objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
     		
-    	
-
 	 	?>
 	<?php 	$strSQLSymptomNode = "SELECT * FROM symptomnode WHERE symptomNodeID=".$_GET['symptomNodeID'];
 			$objQuerySymptomNode = mysql_query($strSQLSymptomNode);
@@ -64,18 +55,24 @@
 	?>
 
 	 <div class="container">
-		<h1>Symptom Node ID : <?php echo $_GET['symptomNodeID'];?></h1>
-		
-		<h2>Question: <?php echo $result['question'];?></h2>
-		<h1>Disease Of Symptom Node List</h1>
+	 	<h2>เพิ่มโรคในการวินิจฉัย</h2>
+	 	<hr/>
+
+		<!-- <h1>Symptom Node ID : <?php echo $_GET['symptomNodeID'];?></h1> -->
+		<div class="form-group">
+			<label>คำถามสุดท้ายก่อนการวินิจฉัย:</label> 
+			<textarea class="form-control" style="resize:none;font-size:16px" readonly row="2"><?php echo $result['question'];?></textarea>
+		</div>
+
+		<h3>รายการโรค</h3>
 		<form name = "dosMN" method="post" action="<?php echo $_SERVER["PHP_SELF"]."?symptomNodeID="
 		.$_GET['symptomNodeID']."&type=".$_GET['type'];?>">
 			<input type="hidden" name="hdnCmd" value="">
 			<table class="table table-bordered table-hover">
 				<thead>
 				<tr>
-					<th><div align="center">Disease of symptom ID</div></th>
-					<th><div align="center">Disease ID</div></th>
+					<th style="width: 20%;"><div align="center">Disease of symptom ID</div></th>
+					<th style="width: 20%;"><div align="center">Disease ID</div></th>
 					<th><div align="center">Disease Name</div></th>
 					<th><div align="center">Delete</div></th>
 				</tr>
@@ -88,10 +85,10 @@
 		
 	    
 	      	<tr>
-				<td><?php echo $objResult['diseaseOfSymptomID'];?></td>
-				<td><?php echo $objResult['diseaseID'];?></td>
+				<td style="text-align: center;"><?php echo $objResult['diseaseOfSymptomID'];?></td>
+				<td style="text-align: center;"><?php echo $objResult['diseaseID'];?></td>
 				<td><?php echo $objResult['name'];?></td>
-				<td><a href="JavaScript:
+				<td style="text-align: center;"><a href="JavaScript:
 					if(confirm('Confirm Delete?')==true){
 					window.location='
 					<?php echo $_SERVER["PHP_SELF"]."?symptomNodeID=".$_GET['symptomNodeID']."&type=".$_GET['type'];?>&Action=Del&DosID=<?php echo $objResult['diseaseOfSymptomID'];?>';}">Delete</a>
@@ -104,16 +101,23 @@
 	    ?>
 	        <tr>
 	          <td><input type= "hidden" name="txtAddDosID" ></td>
-	          <td><input type="text" name="txtAddDiseaseID" readonly id="disease-id-value"></td>
+	          <td><input class="form-control" type="text" name="txtAddDiseaseID" readonly id="disease-id-value"></td>
 	          <!-- <td><textarea name = "txtAddDetail" ></textarea></td> -->
 
 	          <td>
-	          	<input type="text" name="txtAddDisease" readonly id="disease-value">
-	          	<input type="button" value="..." data-toggle="modal" data-target="#list-of-disease-modal">
+	          	<div class="row">
+	          		<div class="col-sm-10">
+	          			<input class="form-control" type="text" name="txtAddDisease" readonly id="disease-value">
+	          		</div>
+	          		<div class="col-sm-2">
+	          			<input class="btn btn-default" type="button" value="..." data-toggle="modal" data-target="#list-of-disease-modal">	
+	          		</div>
+	          	</div>
+	          	
 	          </td>
 	          <td align="right">
 	            <div align="center">
-	              <input name="btnAdd" type="button" id="btnAdd" value="Add" OnClick="
+	              <input class="btn btn-success" name="btnAdd" type="button" id="btnAdd" value="Add" OnClick="
 	              	var chkID=document.getElementById('disease-id-value').value;
 	              	if(chkID==''){
 						alert('Please select Diease!!!');
@@ -139,7 +143,7 @@
 
 	    }//else Don't Have ID"?
 		?>
-		<input type="button" value="Back" Onclick = "location.href ='SymptomNodeShow.php?symptomID=<?php echo $symptomID;?>'">
+		<input class="btn btn-default" type="button" value="<<Back" Onclick = "location.href ='SymptomNodeShow.php?symptomID=<?php echo $symptomID;?>'">
 	</div><!-- container -->
 
 	<!-- Modal -->
@@ -148,7 +152,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Diseases List</h4>
+	        <h4 class="modal-title" id="myModalLabel">รายการโรค</h4>
 	      </div>  <!-- modal-header -->
 	      <div class="modal-body">
 	        <table id="modal-table" class="table table-bordered table-hover">

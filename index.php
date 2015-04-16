@@ -1,3 +1,4 @@
+<?php $title = "หน้าหลัก";?>
 <?php include('header.php');?>
 
 <?php include('subheader.php');?>

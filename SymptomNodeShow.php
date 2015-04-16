@@ -1,3 +1,4 @@
+<?php $title = "รายการคำถามของอาการ";?>
 <?php 
     include('header.php');
     include('subheader_symptomNode.php');
@@ -28,7 +29,7 @@
     $objQuerysymptom = mysql_query($strSQLsymptom) or die ("Error Query [".$strSQLsymptom."]");
     $showName = NULL;
 ?>
-    <div class="container">
+    <div class="container"><!-- Search Symptom -->
         <div class="row">
             <div class="col-md-12">
             <div class="searchSynptom" align="right">
@@ -63,7 +64,13 @@
 
         </div>
 
-    <div class="row">
+<?php
+    //Create Array
+    $DataArray = array();
+    $TreeArray = array();
+?>
+
+    <div class="row"><!-- Show Tree -->
         <div class="col-md-12">
     <?php
     if(isset($_GET['symptomID'])){
@@ -72,80 +79,44 @@
 
         $strSQL = "SELECT * FROM symptomnode WHERE symptomID = ".$_GET['symptomID'];
         $objQuery = mysql_query($strSQL) or die ("Error Query [".$strSQL."]");
-
+        $count =-1;
         $existData = 0;
         //echo "Test :".$objQuery."<br>";
     while($objResult= mysql_fetch_array($objQuery)){
         $existData = 1;
-        //echo "<div id='display-node ".$objResult['symptomNodeID']."' data-toggle='modal' data-target='#testModal'>";
-        //echo "<div id='display-node' data-toggle='modal' data-target='#testModal'>";
-        //echo "<img src='test.jpeg' width='30' height='30' Onclick='Javascript:alert('imgTest');'/>";
-        ?>
-        <span  class="glyphicon glyphicon-edit" style="cursor: pointer;" Onclick="openModal('<?php echo $objResult['symptomNodeID'];?>')"></span>
-        <?php
-        echo "ID = ".$objResult['symptomNodeID']."---";
-        echo $objResult['symptomID'];
-        echo $objResult['isRoot'];
-        echo $objResult['isYesNode'];
-        echo $objResult['isNoNode'];
-        //echo "<span id='question-node ".$objResult['symptomNodeID']."' data-toggle='modal' data-target='#testModal'>".$objResult['question']."</span>";
-        echo "<span id='".$objResult['symptomNodeID']."'>".$objResult['question']."</span>"; 
-        echo $objResult['yesNodeID'];
-        echo $objResult['noNodeID'];
-        echo $objResult['parentNodeID'];
-        echo $objResult['haveAdditionData'];
-        echo $objResult['typeAdditionData'];
-        // echo "</div>";
-        // echo "<div style='float:left;'>";
-        if($objResult['yesNodeID'] ==null){
-            // echo "<input type='button' value='Yes Node' Onclick='JavaScript:alert(".$objResult['symptomNodeID'].")' >";  
-        ?>
-            <input type='button' value='Yes Node' 
-            Onclick='JavaScript:
-            goToSymptomNodeAdd("yesNode","<?php echo $objResult['symptomNodeID'];?>");
-            '>
-        <?php
-        }//if($objResult['yesNodeID'] ==null)
-
-        if($objResult['noNodeID'] ==null){
-        ?>
-
-            <input type='button' value='No Node' 
-            Onclick='JavaScript:
-            goToSymptomNodeAdd("noNode","<?php echo $objResult['symptomNodeID'];?>");
-            '>
-
-        <?php
-        }//if($objResult['noNodeID'] ==null)
         
-        //if Last No of Symptom, I will be added disease.
-        if($objResult['yesNodeID'] ==null && $objResult['noNodeID'] ==null){
-            $strSQLCheck = "SELECT * FROM diseaseofsymptom WHERE symptomNodeID=".$objResult['symptomNodeID'];
-            $objQueryCheck = mysql_query($strSQLCheck);
-            $result = mysql_fetch_array($objQueryCheck);           
-            //echo "objQueryCheck:".$objQueryCheck."\n";
-            //echo "objQueryCheck: ".$result."\n";
-            if($result==null){
-                       
-    ?>
-        <a href = "DiseaseOfSymptomNodeManage.php?symptomNodeID=<?php echo $objResult['symptomNodeID'];?>&type=Add" > Add Disease </a>
-    
-    <?php
-        }//if($result==null)
-        else{
         ?>
-            <a href = "DiseaseOfSymptomNodeManage.php?symptomNodeID=<?php echo $objResult['symptomNodeID'];?>&type=Add" > Edit Disease </a>
-        <?php }
-        }//if($objResult['yesNodeID'] ==null && $objResult['noNodeID'] ==null)
-        else{
-
-    ?>
-        <!-- <a href = "DiseaseOfSymptomNodeManage.php?symptomNodeID=<?php echo $objResult['symptomNodeID'];?>&type=View" > View Detail </a> -->
-    
-    <?php
-            }
-           // echo "</div>";
-            echo "<br>";
+        <!-- <span  class="glyphicon glyphicon-edit" style="cursor: pointer;" Onclick="openModal('<?php echo $objResult['symptomNodeID'];?>')"></span> -->
+        <?php
+        // $count++;
+        // echo "[".$count."]ID = ".$objResult['symptomNodeID']."---";
+        // echo $objResult['symptomID'];
+        // echo $objResult['isRoot'];
+        // echo $objResult['isYesNode'];
+        // echo $objResult['isNoNode'];
+        // //echo "<span id='question-node ".$objResult['symptomNodeID']."' data-toggle='modal' data-target='#testModal'>".$objResult['question']."</span>";
+        // echo "<span >".$objResult['question']."</span>"; 
+        // echo $objResult['yesNodeID'];
+        // echo $objResult['noNodeID'];
+        // echo $objResult['parentNodeID'];
+        // echo $objResult['haveAdditionData'];
+        // echo $objResult['typeAdditionData'];
+        $DataArray[] = array(
+            'symptomNodeID' => $objResult['symptomNodeID'],
+            'symptomID' => $objResult['symptomID'],
+            'isRoot' => $objResult['isRoot'],
+            'isYesNode' => $objResult['isYesNode'],
+            'isNoNode' => $objResult['isNoNode'],
+            'question' => $objResult['question'],
+            'yesNodeID' => $objResult['yesNodeID'],
+            'noNodeID' => $objResult['noNodeID'],
+            'parentNodeID' => $objResult['parentNodeID'],
+            'haveAdditionData' => $objResult['haveAdditionData'],
+            'typeAdditionData' => $objResult['typeAdditionData']
+            );
+        $TreeArray[$objResult['symptomNodeID']] = $objResult['parentNodeID'];
+        
+       
         }//while($objResult= mysql_fetch_array($objQuery))
     if($existData==0){
         ?>
@@ -154,7 +125,10 @@
             location.href = "SymptomNodeAddRoot.php?symptomID=<?php echo $symptomID;?>";
             '>
         <?php
-    }//END:if($existData==0)
+        }//END:if($existData==0)
+        else{
+            printtree(parseTree($TreeArray,$TreeArray),$DataArray);
+        }
     }//END:$_GET['symptomID']!=""
 }//Isset Get
 else{//Donothing
@@ -164,8 +138,98 @@ else{//Donothing
     </div>
 </div>
 </div><!-- container -->
+
 <?php }//Session?>
 
+<?php
+    //Function Create Tree 
+    function parseTree($tree,$temp, $root = 0) {
+ 
+    $return = array();
+    # Traverse the tree and search for direct children of the root
+    foreach($tree as $child => $parent) {
+        # A direct child is found
+        if($parent == $root) {
+           
+            # Append the child into result array and parse its children
+            $return[] = array(
+                'name' => $child,
+                'index' => array_search($child,array_keys($temp)), 
+                'children' => parseTree($tree,$temp, $child)
+            );
+            # Remove item from tree (we don't need to traverse this again)
+            unset($tree[$child]);
+        }
+    }
+    return empty($return) ? null : $return;    
+}
+
+function printtree($tree,$DataArray) {
+    if(!is_null($tree) && count($tree) > 0) {
+        echo '<ul>';
+        foreach($tree as $node) {
+            //echo '<li>'.$node['name']."-index:".$node['index'];
+    ?>
+        <li>
+            <span  class="glyphicon glyphicon-edit" style="cursor: pointer;" Onclick="openModal('<?php echo $DataArray[$node['index']]['symptomNodeID'];?>')"></span>
+            <span id='<?php echo $DataArray[$node['index']]['symptomNodeID'];?>'><?php echo $DataArray[$node['index']]['question'];?></span>
+
+    <?php
+        //Check Add Yes Node
+        if($DataArray[$node['index']]['yesNodeID'] ==null){
+            // echo "<input type='button' value='Yes Node' Onclick='JavaScript:alert(".$objResult['symptomNodeID'].")' >";  
+        ?>
+            <input type='button' value='Yes Node' 
+            Onclick='JavaScript:
+            goToSymptomNodeAdd("yesNode","<?php echo $DataArray[$node['index']]['symptomNodeID'];?>");
+            '>
+        <?php
+        }//if($DataArray[$node['index']['yesNodeID'] ==null)
+
+        //Check Add No Node
+        if($DataArray[$node['index']]['noNodeID'] ==null){
+        ?>
+
+            <input type='button' value='No Node' 
+            Onclick='JavaScript:
+            goToSymptomNodeAdd("noNode","<?php echo $DataArray[$node['index']]['symptomNodeID'];?>");
+            '>
+
+        <?php
+        }//if($DataArray[$node['index']['noNodeID'] ==null)
+        
+        //if Last No of Symptom, I will be added disease.
+        if($DataArray[$node['index']]['yesNodeID'] ==null && $DataArray[$node['index']]['noNodeID'] ==null){
+            $strSQLCheck = "SELECT * FROM diseaseofsymptom WHERE symptomNodeID=".$DataArray[$node['index']]['symptomNodeID'];
+            $objQueryCheck = mysql_query($strSQLCheck);
+            $result = mysql_fetch_array($objQueryCheck);           
+            //echo "objQueryCheck:".$objQueryCheck."\n";
+            //echo "objQueryCheck: ".$result."\n";
+            if($result==null){
+                       
+    ?>
+        <a href = "DiseaseOfSymptomNodeManage.php?symptomNodeID=<?php echo $DataArray[$node['index']]['symptomNodeID'];?>&type=Add" > Add Disease </a>
+    
+    <?php
+        }//if($result==null)
+        else{
+        ?>
+            <a href = "DiseaseOfSymptomNodeManage.php?symptomNodeID=<?php echo $DataArray[$node['index']]['symptomNodeID'];?>&type=Add" > Edit Disease </a>
+        <?php }
+        }//if($DataArray[$node['index']['yesNodeID'] ==null && $objResult['noNodeID'] ==null)
+
+            //Recursive Print Tree
+            printtree($node['children'],$DataArray);
+            echo '</li>';
+        }
+        echo '</ul>';
+    }
+}
+
+
+
+//print_r(parseTree($TreeArray));
+?>
 
 <!-- Modal -->
 <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -229,6 +293,13 @@ else{//Donothing
                 });
             });
 
+            // Selector change value 
+            //function test(){
+                // if($('#symptom-list').val() != "a"){
+                //     alert("No data");
+                // }
+            //}
+            
 
         });
     </script>

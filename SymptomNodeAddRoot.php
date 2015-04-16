@@ -1,3 +1,4 @@
+<?php $title = "เพิ่มโหนดราก";?>
 <?php include('header.php');?>
 <?php include('subheader_symptomNode.php');?>
 <?php
@@ -19,7 +20,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-		<form method="POST" action="SymptomNodeCompute.php">
+		<form method="POST" id="form-add-node" action="SymptomNodeCompute.php">
 		  <div class="form-group">
 		  	<input type="hidden" name="hidTypeNode" value="rootNode">
 		  	<input type="hidden" name="hidAddRoot" value="addRoot">
@@ -29,12 +30,13 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="questionTxt">Question</label>
-		    <input type="text" class="form-control" id="questionTxt" name="questionTxt">
+		    <!-- <input type="text" class="form-control" id="questionTxt" name="questionTxt"> -->
+		    <textarea class="form-control" id="questionTxt" name="questionTxt" row="2"></textarea>
 		  </div>
 
-		  <div class="checkbox">
+	 	  <div class="checkbox">
 		  	<label>
-			<input class="have-addition-data" type = "checkbox" name = "chkAdditionData">Have Addition Data
+			<!-- <input class="have-addition-data" type = "checkbox" name = "chkAdditionData">Have Addition Data
 			</label>
 			<div id="type-addition-data">
 				Type Addition Data: 
@@ -46,11 +48,23 @@
 					<option>ชีพจร</option>
 				</select>
 			</div><!-- type-addition-data -->
+			<input class="have-addition-data" type = "checkbox" name = "chkAdditionData">ข้อมูลเพิ่มเติม
+			<br>
+			<div id="type-addition-data">
+				ประเภทของข้อมูลเพิ่มเติม: 
+				<select name="slcTypeAdditionData" class="selectpicker">
+					<option>อุณหภูมิ</option>
+					<option>ความดัน</option>
+					<option>เพศชาย</option>
+					<option>เพศหญิง</option>
+					<option>ชีพจร</option>	
+				</select>
+			</div><!-- End: type-addition-data -->
 		  </div><!-- checkbox -->
 
-		  <button type="submit" class="btn btn-default">Submit</button>
 
-		  <input type = "button" value ="Back" Onclick = "location.href ='SymptomNodeShow.php'">
+		  <input type="button" class="btn btn-success" value="เพิ่ม" onclick="questionCheck();">
+		  <input type = "button" class="btn btn-danger" value ="Back" Onclick = "location.href ='SymptomNodeShow.php'">
 		</form>
 		</div>
 	</div>
@@ -68,7 +82,15 @@
 			}
 		});
 
+		$('#questionTxt').focus();
 	});
 
+	function questionCheck(){
+		if($('#questionTxt').val() == ""){
+			alert("กรุณาเพิ่มข้อมูลคำถาม");
+		}else{
+			$('form#form-add-node').submit();
+		}
+	}
 </script>
 <?php include('footer.php');?>

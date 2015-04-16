@@ -167,7 +167,7 @@
     }//else Don't Have ID
 	?>
 	
-	<input type = "button" value ="Back" Onclick = "location.href ='DiseaseManage.php'">
+	<input class="btn btn-default" type = "button" value ="<<Back" Onclick = "location.href ='DiseaseManage.php'">
 	</div><!-- container -->
 	
 
