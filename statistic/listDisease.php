@@ -58,7 +58,7 @@ Back to top button
           <ul class="sidebar-nav">
               <li class="sidebar-brand">
                   <a href="#">
-                      Start Bootstrap
+                      MEDMOB Statistic
                   </a>
               </li>
               <li>
@@ -81,10 +81,7 @@ Back to top button
               <h2>แสดงจำนวนผู้ป่วยในแต่ละโรค</h2><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             </div>
             <div class="col-md-2">
-              <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                  Launch demo modal
-                </button>
+
             </div>
             <div class="col-md-4">
               <select id="disease-select" style="margin-top: 25px;" class="form-control">
@@ -136,7 +133,7 @@ Back to top button
                 <tbody>
                   <tr>
                     <td style="text-align: center;">1</td>
-                    <td>ไข้หวัดใหญ่</td>
+                    <td><span style="cursor: pointer;" id="disease-1"><a>ไข้หวัดใหญ่</a></span></td>
                     <td style="text-align: center;">10</td>
                     <td style="text-align: center;">10</td>
                     <td style="text-align: center;">10</td>
@@ -1687,9 +1684,9 @@ Back to top button
                 <div id="piechart" style="width: 500px; height: 350px;"></div>
             </div>
             <div class="col-md-6">
-              <h4>จำนวนวัยผู้ป่วย</h4>
-              <hr/>
-             
+              <!-- <h4>จำนวนวัยผู้ป่วย</h4>
+              <hr/> -->
+              <div id="chart_div" style="width: 500px; height: 350px;margin-top:20px"></div>
             </div>
           </div>
 
@@ -1771,6 +1768,12 @@ Back to top button
           $('#list-disease'+id).ScrollTo();
         });
 
+        //Open Modal Detail of each disease
+        $('#disease-1').click(function(){
+          //alert('test');
+          $('#myModal').modal('show');
+
+        });
 
     });
 </script>
@@ -1799,6 +1802,38 @@ Back to top button
         chart.draw(data, options);
         //chart1.draw(data, options);
       }
+
+      //Age Chart
+      google.load('visualization', '1', {packages: ['corechart', 'bar']});
+google.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+      var data = google.visualization.arrayToDataTable([
+        ['วัย', 'จำนวนผู้ป่วย',],
+        ['วัยเด็ก(0-15)', 23],
+        ['วัยรุ่น(16-24)', 37],
+        ['วัยทำงาน(25-50)', 102],
+        ['วัยสูงอายุ(51ขึ้นไป)', 51]
+      ]);
+
+      var options = {
+        title: 'จำนวนผู้ป่วยแต่ละวัย',
+        width:'500',
+        height:'300',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: '',
+          minValue: 0
+        },
+        vAxis: {
+          title: ''
+        }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
     </script>
 
 <?php	include('footer.php');?>

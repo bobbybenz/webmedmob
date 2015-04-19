@@ -10,7 +10,7 @@
           <ul class="sidebar-nav">
               <li class="sidebar-brand">
                   <a href="#">
-                      Start Bootstrap
+                      MEDMOB Statistic
                   </a>
               </li>
               <li>
@@ -29,10 +29,10 @@
       <!-- /#page-content-wrapper -->
       <div id="page-content-wrapper">
         <div class="container">
-          <h2>แสดงโรคในแต่ละจังหวัด</h2>
+          <h2>แสดงโรคในแต่ละจังหวัด</h2><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
           <hr style="border: 3px outset #595955;">
           <div class="row" id="filter-row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <select id="provinceId" class="form-control">
                   <option selected="">เลือกจังหวัด</option>
                   <option value="81">กระบี่</option>
@@ -110,29 +110,22 @@
                   <option value="58">แม่ฮ่องสอน</option>          
               </select>
 
-           <!--    <select class="selectpicker">
-                <option value="a">a</option>
-                <option value="a">a</option>
-              </select> -->
-            </div><!-- col-md-6 -->
-            
-            <div class="col-md-6">
-              <select class="selectpicker">
-                <option value="a">a</option>
-                <option value="a">a</option>
+            </div><!-- col-md-4 -->
+            <div class="col-md-1"></div>          
+            <div class="col-md-1" style="text-align: right;"><h4>ปี :</h4></div>
+            <div class="col-md-3">
+              <select class="form-control">
+                <option value="">2555</option>
+                <option value="">2556</option>
               </select>
-              <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             </div>
           </div><!-- filter-row -->
           
           <h3>ภาพรวมของกลุ่มโรค</h3>
           <hr/>
           <div class="row" id="trend-chart-central">   
-            <div class="col-md-6">
-             <div id="curve_chart" style="width: 720px; height: 400px"></div>
-            </div>
-             <div class="col-md-6">
-             <div id="curve_chart1" style="width: 720px; height: 400px"></div>
+            <div class="col-md-12">
+             <div id="curve_chart" align="center" style="" ></div>
             </div>
             
           </div><!-- trend-chart-central -->
@@ -307,28 +300,65 @@
           }"></script>
 
     <script type="text/javascript">
+      //google.setOnLoadCallback(drawChart);
+
+      // function drawChart() {
+      //   var data = google.visualization.arrayToDataTable([
+      //     ['Year', 'จำนวนคนป่วย'],
+      //     ['2004',  1000],
+      //     ['2005',  1170],
+      //     ['2006',  660],
+      //     ['2007',  1030],
+      //     ['2008',  1030]
+      //   ]);
+      //   var disease ="โรคติดต่อพิเศษ"
+      //   var options = {
+      //     title: 'แนวโน้ม'+disease,
+      //     curveType: 'function',
+      //     legend: { position: 'bottom' }
+      //   };
+
+      //   var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+      //   chart.draw(data, options);
+      //   var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+      //   chart1.draw(data, options);
+      // }
+
+      google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
-
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'จำนวนคนป่วย'],
-          ['2004',  1000],
-          ['2005',  1170],
-          ['2006',  660],
-          ['2007',  1030],
-          ['2008',  1030]
-        ]);
-        var disease ="โรคติดต่อพิเศษ"
-        var options = {
-          title: 'แนวโน้ม'+disease,
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+      var data = google.visualization.arrayToDataTable([
+        ["โรค", "จำนวน"],
+        ["xxxxxxxxx", 80],
+        ["xxxxxxxxx", 49],
+        ["xxxxxxxxx", 30],
+        ["xxxxxxxxx", 45],
+        ["xxxxxxxxx", 74],
+        ["xxxxxxxxx", 49],
+        ["xxxxxxxxx", 30],
+        ["xxxxxxxxx", 43],
+        ["xxxxxxxxx", 88],
+        ["xxxxxxxxx", 49],
+        ["xxxxxxxxx", 30],
+        ["xxxxxxxxx", 45],
+        ["xxxxxxxxx", 78],
+        ["xxxxxxxxx", 49],
+        ["xxxxxxxxx", 30],
+        ["xxxxxxxxx", 49],
+        ["xxxxxxxxx", 30],
+        ["xxxxxxxxx", 45]
+      ]);
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-        chart.draw(data, options);
-        var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart1'));
-        chart1.draw(data, options);
-      }
+
+      var options = {
+        title: "",
+        width: 1100,
+        height: 500,
+        bar: {groupWidth: "65%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("curve_chart"));
+      chart.draw(data, options);
+  }
     </script>
 <?php	include('footer.php');?>

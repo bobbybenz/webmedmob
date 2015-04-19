@@ -9,8 +9,8 @@
       <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
               <li class="sidebar-brand">
-                  <a href="#">
-                      Start Bootstrap
+                  <a href="">
+                    MEDMOB Statistic
                   </a>
               </li>
               <li>
@@ -50,7 +50,14 @@
               <h2>แสดงแนวโน้มของโรคตามระบบในแต่ละภาค</h2><a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
             </div>
             <div class="col-md-2"></div>
-            <div class="col-md-4">
+            
+          </div>
+          
+          <hr style="border: 3px outset #595955;">
+
+          <div class="row" id="filter-row">
+           
+             <div class="col-md-4">
               <select id="disease-select" style="margin-top: 25px;" class="form-control">
               <option value = "1">โรคระบบตทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ</option>
               <option value = "2">โรคระบบทางเดินอาหารและโรคติดต่อโดนทางเดินอาหาร</option>
@@ -71,33 +78,15 @@
               <option value = "17">โรคมะเร็ง</option>
               <option value = "18">โรคติดเชื้ออุบัติใหม่</option>
             </select>
-            </div>
-          </div>
+            </div><!-- col-md-4-->  
           
-          <hr style="border: 3px outset #595955;">
-
-          <div class="row" id="filter-row">
-            <div class="col-md-6">
-              <select class="selectpicker">
-                <option value="a">a</option>
-                <option value="a">a</option>
-              </select>
-            </div><!-- col-md-6 -->
-            
-            <div class="col-md-6">
-              <select class="selectpicker">
-                <option value="a">a</option>
-                <option value="a">a</option>
-              </select>
-              <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-            </div>
           </div><!-- filter-row -->
           
           <h3>ภาคกลาง</h3>
           <hr/>
           <div class="row" id="trend-chart-central">   
             <div class="col-md-7">
-             <div id="curve_chart" style="width: 720px; height: 400px"></div>
+             <div id="curve_chart1" style="width: 720px; height: 400px"></div>
             </div>
             <div class="col-md-5">
               <h4>Top List</h4>
@@ -151,7 +140,169 @@
           <div class="row" id="trend-chart-north">
             
             <div class="col-md-7">
-             <div id="curve_chart1" style="width: 720px; height: 400px"></div>
+             <div id="curve_chart2" style="width: 720px; height: 400px"></div>
+            </div>
+            <div class="col-md-5">
+              <h4>Top List</h4>
+                    <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>โรคที่พบมาก</th>
+                    <th>จำนวน(คน)</th>
+                    <th>เปอร์เซนต์(%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- trend-chart-central -->
+
+          <h3>ภาคตะวันออก</h3>
+          <hr/>
+          <div class="row" id="trend-chart-north">
+            
+            <div class="col-md-7">
+             <div id="curve_chart3" style="width: 720px; height: 400px"></div>
+            </div>
+            <div class="col-md-5">
+              <h4>Top List</h4>
+                    <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>โรคที่พบมาก</th>
+                    <th>จำนวน(คน)</th>
+                    <th>เปอร์เซนต์(%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- trend-chart-central -->
+
+          <h3>ภาคตะวันตก</h3>
+          <hr/>
+          <div class="row" id="trend-chart-north">
+            
+            <div class="col-md-7">
+             <div id="curve_chart4" style="width: 720px; height: 400px"></div>
+            </div>
+            <div class="col-md-4">
+              <h4>Top List</h4>
+                    <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>โรคที่พบมาก</th>
+                    <th>จำนวน(คน)</th>
+                    <th>เปอร์เซนต์(%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>ไข้หวัดใหญ่</td>
+                    <td>10</td>
+                    <td>20</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- trend-chart-central -->
+
+           <h3>ภาคใต้</h3>
+          <hr/>
+          <div class="row" id="trend-chart-north">
+            
+            <div class="col-md-7">
+             <div id="curve_chart5" style="width: 720px; height: 400px"></div>
             </div>
             <div class="col-md-5">
               <h4>Top List</h4>
@@ -231,24 +382,30 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'จำนวนคนป่วย'],
-          ['2004',  1000],
-          ['2005',  1170],
-          ['2006',  660],
-          ['2007',  1030],
-          ['2008',  1030]
+          ['Year', 'จำนวนคนป่วย(คน)'],
+          ['2553',  1000],
+          ['2554',  1170],
+          ['2555',  660],
+          ['2556',  1030],
+          ['2557',  1030]
         ]);
-        var disease ="โรคติดต่อพิเศษ"
+        var disease ="โรคระบบตทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ"
         var options = {
           title: 'แนวโน้ม'+disease,
           curveType: 'function',
           legend: { position: 'bottom' }
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-        chart.draw(data, options);
         var chart1 = new google.visualization.LineChart(document.getElementById('curve_chart1'));
         chart1.draw(data, options);
+        var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+        chart2.draw(data, options);
+        var chart3 = new google.visualization.LineChart(document.getElementById('curve_chart3'));
+        chart3.draw(data, options);
+        var chart4 = new google.visualization.LineChart(document.getElementById('curve_chart4'));
+        chart4.draw(data, options);
+        var chart5 = new google.visualization.LineChart(document.getElementById('curve_chart5'));
+        chart5.draw(data, options);
       }
     </script>
 <?php	include('footer.php');?>
