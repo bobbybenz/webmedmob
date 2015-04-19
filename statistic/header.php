@@ -27,6 +27,8 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../js/bootstrap.min.js"></script>
 
+    <!-- Include jQuery ScrollTo -->
+    <script src="../lib/jquery-scrollto.js"></script>
     <!-- jQuery -->
     <!-- <script src="js/jquery.js"></script>-->
 
