@@ -1,6 +1,7 @@
 <?php $title = "รายการลักษณะอาการ";?>
 <?php include('header.php');?>
 <?php include('subheader_symptom.php');?>
+
 <?php if(isset($_SESSION['userID'])) { ?>
   <?php
     include('connectAzure.php');

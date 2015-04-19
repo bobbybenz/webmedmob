@@ -1,3 +1,7 @@
+<style>
+
+</style>
+
 <?php $title = "รายการคำถามของอาการ";?>
 <?php 
     include('header.php');
@@ -127,7 +131,9 @@
         <?php
         }//END:if($existData==0)
         else{
-            printtree(parseTree($TreeArray,$TreeArray),$DataArray);
+            echo("<div id='bitree'>");
+                printtree(parseTree($TreeArray,$TreeArray),$DataArray);
+            echo("</div>");
         }
     }//END:$_GET['symptomID']!=""
 }//Isset Get
@@ -179,21 +185,27 @@ function printtree($tree,$DataArray) {
         if($DataArray[$node['index']]['yesNodeID'] ==null){
             // echo "<input type='button' value='Yes Node' Onclick='JavaScript:alert(".$objResult['symptomNodeID'].")' >";  
         ?>
-            <input type='button' value='Yes Node' 
+            <button style ="height:30;margin:3;" class="btn btn-success" type="button" Onclick='JavaScript:
+            goToSymptomNodeAdd("yesNode","<?php echo $DataArray[$node['index']]['symptomNodeID'];?>");
+            '><span class="glyphicon glyphicon-ok-circle"></span> Yes Node</button>
+           <!--  <input class="" type='button' value='Yes Node' 
             Onclick='JavaScript:
             goToSymptomNodeAdd("yesNode","<?php echo $DataArray[$node['index']]['symptomNodeID'];?>");
-            '>
+            '> -->
         <?php
         }//if($DataArray[$node['index']['yesNodeID'] ==null)
 
         //Check Add No Node
         if($DataArray[$node['index']]['noNodeID'] ==null){
         ?>
-
-            <input type='button' value='No Node' 
+            
+            <button style ="height:30;margin:3" class="btn btn-danger" type="button" Onclick='JavaScript:
+            goToSymptomNodeAdd("noNode","<?php echo $DataArray[$node['index']]['symptomNodeID'];?>");
+            '><span class="glyphicon glyphicon-remove-circle"></span> No Node</button>
+            <!-- <input type='button' value='No Node' 
             Onclick='JavaScript:
             goToSymptomNodeAdd("noNode","<?php echo $DataArray[$node['index']]['symptomNodeID'];?>");
-            '>
+            '> -->
 
         <?php
         }//if($DataArray[$node['index']['noNodeID'] ==null)
@@ -255,6 +267,8 @@ function printtree($tree,$DataArray) {
   </div>
 </div>
 
+
+
     <script>
    		function goToSymptomNodeAdd(typeNode, symptomNodeID){
    			//alert("typeNode:"+typeNode+"symptomNodeID:"+symptomNodeID);
@@ -300,8 +314,11 @@ function printtree($tree,$DataArray) {
                 // }
             //}
             
+            // html demo
+            
 
         });
+
     </script>
 
 <?php include('footer.php');?>

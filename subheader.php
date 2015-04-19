@@ -1,5 +1,5 @@
- <?php session_start();?>
- <nav class="navbar navbar-inverse">
+<?php session_start();?>
+<nav class="navbar navbar-inverse">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -15,15 +15,8 @@
             <!-- <li class="active"><a href="SymptomManage.php">Symptom</a></li> -->
             <li><a href="SymptomManage.php">Symptom</a></li>
             <li><a href="DiseaseManage.php">Disease</a></li>
-            <li class="active"><a href="SymptomNodeShow.php">Symptom Node</a></li>
-            <?php if(isset($_SESSION['userID'])){
-                echo "<li style='margin-left:300px;'><a href='logout.php'>log out</a></li>";
-            }else{
-                echo "<li style='margin-left:300px;'><a href='login.php'>log in</a></li>";
-            }
-            ?>
+            <li><a href="SymptomNodeShow.php">Symptom Node</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-<?php require_once('functionCheckLogin.php');?>

@@ -19,10 +19,11 @@
             <?php if(isset($_SESSION['userID'])){
                 echo "<li style='margin-left:300px;'><a href='logout.php'>log out</a></li>";
             }else{
-                echo "<li style='margin-left:300px;'><a href='index.php'>log in</a></li>";
+                echo "<li style='margin-left:300px;'><a href='login.php'>log in</a></li>";
             }
             ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+<?php require_once('functionCheckLogin.php');?>

@@ -1,8 +1,10 @@
 <?php $title = "หน้าหลัก";?>
 <?php include('header.php');?>
 
-<?php include('subheader.php');?>
-
+<?php //include('subheader.php');?>
+<? header("Location: SymptomManage.php");
+  die();
+?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
