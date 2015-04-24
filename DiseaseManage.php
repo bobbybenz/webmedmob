@@ -142,11 +142,12 @@
       else// Don't have GET variable
       {
       ?>
-		<tr>
+		<tr id="<?php echo $objResult["diseaseID"];?>">
 			<td><?php echo $objResult['diseaseID'];?></td>
 			<td><a href = "TreatmentManage.php?diseaseID=<?php echo $objResult['diseaseID'];?>&diseaseName=<?php echo $objResult['name'];?>" > <?php echo $objResult['name'];?></a></td>
 			<td><?php echo $objResult['type'];?></td>
-      <td><a href = "<?php echo $_SERVER["PHP_SELF"];?>?Action=Edit&DisID=<?php echo $objResult["diseaseID"];?>">Edit</a></td>
+      <!-- <td><a href = "<?php echo $_SERVER["PHP_SELF"];?>?Action=Edit&DisID=<?php echo $objResult["diseaseID"];?>">Edit</a></td> -->
+      <td><a onclick="changeRow('<?php echo $objResult["diseaseID"];?>','<?php echo $objResult['name'];?>','<?php echo $objResult['type'];?>');">Edit</a></td>
 			<td><a href="JavaScript:if(confirm('Confirm Delete?')==true){window.location='<?php echo $_SERVER["PHP_SELF"];?>?Action=Del&DisID=<?php echo $objResult["diseaseID"];?>';}">Delete</a></td>
 
 		</tr>
@@ -200,11 +201,29 @@
 
 <script>
 $(document).ready(function(){
-  $('#test').dataTable({
+  var table = $('#test').dataTable({
     "iDisplayLength": 25
+
   });
 
 });
+
+function changeRow(diseaseID,diseaseName,type){
+  //alert(diseaseID+diseaseName+type);
+  //$('#'+diseaseID).html("<td><input name = 'txtEditdiseaseID' type = 'hidden' value='"+diseaseID+"'>"+diseaseID+"</td><td><input name = 'txtEditName' type = 'text' class='form-control' autofocus value ='"+diseaseName+"'></td><td><select name = 'txtEditTypeOfSymptom' class='form-control'><option value=''>test</option><option value = 'โรคระบบทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ'"if(type=='โรคระบบตทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ') document.write('selected');+">โรคระบบตทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ</option></select></td><td><input type='text' value='Test'></td><td><input type='text' value='Test'></td>");
+$.ajax({
+        type: "POST",
+        url: "dataTableAjax.php",
+        data: {diseaseID: diseaseID,diseaseName:diseaseName,type:type,action:"diseaseManageEdit"},
+        success: function(result) {
+            //alert("result : "+result);
+            //$('#'+idNode).html(result);
+            //$('#testModal').modal('hide');
+            $('#'+diseaseID).html(result);
+        }
+    });
+
+}
 </script>
 	<!-- 	<textarea style = "resize:none;"></textarea> -->
 	<!-- 	<input type = "button" value = "Add" onClick="parent.location='SymptomManage.php'"> -->

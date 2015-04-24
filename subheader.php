@@ -11,12 +11,12 @@
           <a class="navbar-brand" href="#">MOEMOB</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <!-- <li class="active"><a href="SymptomManage.php">Symptom</a></li> -->
+        <!--   <ul class="nav navbar-nav">
+            <!-- <li class="active"><a href="SymptomManage.php">Symptom</a></li>
             <li><a href="SymptomManage.php">Symptom</a></li>
             <li><a href="DiseaseManage.php">Disease</a></li>
             <li><a href="SymptomNodeShow.php">Symptom Node</a></li>
-          </ul>
+          </ul> -->
         </div><!--/.nav-collapse -->
       </div>
     </nav>

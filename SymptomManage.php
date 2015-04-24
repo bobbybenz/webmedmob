@@ -124,12 +124,13 @@
       {
       ?>
    
-        <tr>
+        <tr id="<?php echo $objResult['symptomID'];?>">
           <td><div align="center"><?php echo $objResult["symptomID"];?></div></td>
           <td><?php echo $objResult["name"];?></td>
           <td><?php echo $objResult["flowNumber"];?></td>
           <td><div align="center"><?php echo $objResult["partOfBody"];?></div></td>
-          <td align="center"><a href="<?php echo $_SERVER["PHP_SELF"];?>?Action=Edit&SymID=<?php echo $objResult["symptomID"];?>">Edit</a></td>
+          <!-- <td align="center"><a href="<?php echo $_SERVER["PHP_SELF"];?>?Action=Edit&SymID=<?php echo $objResult["symptomID"];?>">Edit</a></td> -->
+          <td><a onclick="changeRow('<?php echo $objResult["symptomID"];?>','<?php echo $objResult['name'];?>','<?php echo $objResult['flowNumber'];?>','<?php echo $objResult["partOfBody"];?>');">Edit</a></td>
       	  <td align="center"><a href="JavaScript:if(confirm('Confirm Delete?')==true){window.location='<?php echo $_SERVER["PHP_SELF"];?>?Action=Del&SymID=<?php echo $objResult["symptomID"];?>';}">Delete</a></td>
         </tr>
       
@@ -176,5 +177,24 @@ $(document).ready(function(){
   });
 
 });
+
+
+function changeRow(symptomID,name,flowNumber,partOfBody){
+  //alert(symptomID+name+flowNumber,partOfBody);
+  //$('#'+diseaseID).html("<td><input name = 'txtEditdiseaseID' type = 'hidden' value='"+diseaseID+"'>"+diseaseID+"</td><td><input name = 'txtEditName' type = 'text' class='form-control' autofocus value ='"+diseaseName+"'></td><td><select name = 'txtEditTypeOfSymptom' class='form-control'><option value=''>test</option><option value = 'โรคระบบทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ'"if(type=='โรคระบบตทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ') document.write('selected');+">โรคระบบตทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ</option></select></td><td><input type='text' value='Test'></td><td><input type='text' value='Test'></td>");
+$.ajax({
+        type: "POST",
+        url: "dataTableAjax.php",
+        data: {symptomID: symptomID,name:name,flowNumber:flowNumber,partOfBody:partOfBody,action:"symptomManageEdit"},
+        success: function(result) {
+            //alert("result : "+result);
+            //$('#'+idNode).html(result);
+            //$('#testModal').modal('hide');
+            $('#'+symptomID).html(result);
+        }
+    });
+
+}
+
 </script>
 <?php include('footer.php');?>

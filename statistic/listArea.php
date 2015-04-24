@@ -115,8 +115,10 @@
             <div class="col-md-1" style="text-align: right;"><h4>ปี :</h4></div>
             <div class="col-md-3">
               <select class="form-control">
+                <option value="">ทั้งหมด</option>
                 <option value="">2555</option>
                 <option value="">2556</option>
+                <option value="">2557</option>
               </select>
             </div>
           </div><!-- filter-row -->
@@ -186,18 +188,13 @@
           <hr/>
 
           <div class="row" id="list-disease1">
-            <div class="col-md-12">
-              <h3>โรคระบบตทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ</h3> 
+            <div class="col-md-6">
+              <h4>โรคระบบตทางเดินหายใจและโรคติดต่อโดยทางเดินหายใจ</h4> 
               <table class="table">
                 <thead>
                   <tr>
                     <th style="width:6%;text-align: center;">#</th>
                     <th style="text-align: center;">โรคที่พบมาก</th>
-                    <th style="width:8%;text-align: center;">ภาคกลาง</th>
-                    <th style="width:8%;text-align: center;">ภาคเหนือ</th>
-                    <th style="width:8%;text-align: center;">ภาคใต้</th>
-                    <th style="width:8%;text-align: center;">ภาคออก</th>
-                    <th style="width:8%;text-align: center;">ภาคตก</th>
                     <th style="width:10%;text-align: center;">รวม(คน)</th>
                     <th style="width:15%;text-align: center;">เปอร์เซนต์รวม(%)</th>
                   </tr>
@@ -206,11 +203,6 @@
                   <tr>
                     <td style="text-align: center;">1</td>
                     <td>ไข้หวัดใหญ่</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
                     <td style="text-align: center;">10</td>
                     <td style="text-align: center;">20</td>
               <!--       <td style="text-align: right;">10</td>
@@ -225,21 +217,11 @@
                     <td style="text-align: center;">2</td>
                     <td>ไข้หวัดใหญ่</td>
                     <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
                     <td style="text-align: center;">20</td>
                   </tr>
                   <tr>
                     <td style="text-align: center;">3</td>
                     <td>ไข้หวัดใหญ่</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
                     <td style="text-align: center;">10</td>
                     <td style="text-align: center;">20</td>
                   </tr>
@@ -247,21 +229,64 @@
                     <td style="text-align: center;">4</td>
                     <td>ไข้หวัดใหญ่</td>
                     <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
-                    <td style="text-align: center;">10</td>
                     <td style="text-align: center;">20</td>
                   </tr>
                   <tr>
                     <td style="text-align: center;">5</td>
                     <td>ไข้หวัดใหญ่</td>
                     <td style="text-align: center;">10</td>
+                    <td style="text-align: center;">20</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="col-md-6">
+              <h4>โรคระบบทางเดินอาหารและโรคติดต่อโดนทางเดินอาหาร</h4> 
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width:6%;text-align: center;">#</th>
+                    <th style="text-align: center;">โรคที่พบมาก</th>
+                    <th style="width:10%;text-align: center;">รวม(คน)</th>
+                    <th style="width:15%;text-align: center;">เปอร์เซนต์รวม(%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="text-align: center;">1</td>
+                    <td>ไข้หวัดใหญ่</td>
                     <td style="text-align: center;">10</td>
+                    <td style="text-align: center;">20</td>
+              <!--       <td style="text-align: right;">10</td>
+                    <td style="text-align: right;">10</td>
+                    <td style="text-align: right;">10</td>
+                    <td style="text-align: right;">10</td>
+                    <td style="text-align: right;">10</td>
+                    <td style="text-align: right;">10</td>
+                    <td style="text-align: right;">20</td> -->
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;">2</td>
+                    <td>ไข้หวัดใหญ่</td>
                     <td style="text-align: center;">10</td>
+                    <td style="text-align: center;">20</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;">3</td>
+                    <td>ไข้หวัดใหญ่</td>
                     <td style="text-align: center;">10</td>
+                    <td style="text-align: center;">20</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;">4</td>
+                    <td>ไข้หวัดใหญ่</td>
                     <td style="text-align: center;">10</td>
+                    <td style="text-align: center;">20</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: center;">5</td>
+                    <td>ไข้หวัดใหญ่</td>
                     <td style="text-align: center;">10</td>
                     <td style="text-align: center;">20</td>
                   </tr>
